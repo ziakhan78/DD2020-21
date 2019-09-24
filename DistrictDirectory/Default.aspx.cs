@@ -78,11 +78,11 @@ public partial class DistrictDirectory_Default : System.Web.UI.Page
             objdt = con.ExecuteTable();
             if (objdt.Rows.Count > 0)
             {
-                // LblInvalid.Visible = false;
+                
                 Session["user"] = txtUsername.Text;
                 Session["Admin"] = txtUsername.Text;
                 Session["AdminUserName"] = objdt.Rows[0]["FName"].ToString() + " " + objdt.Rows[0]["LName"].ToString();
-                //Session["AdminUserName"] = objdt.Rows[0]["Name"].ToString();
+              
 
                 Session["Uid"] = objdt.Rows[0]["UID"].ToString();
 
