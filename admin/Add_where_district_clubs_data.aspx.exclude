@@ -1,0 +1,1024 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterpages/AdminM.master" AutoEventWireup="true" CodeFile="Add_where_district_clubs_data.aspx.cs" Inherits="admin_Add_where_district_clubs_data" %>
+<%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+
+    <script language="javascript" type="text/javascript">
+
+        function ChkDDLVal() {
+
+            var distMem = document.getElementById('<%=DDLClubName.ClientID%>');
+            if (distMem.value == 'Select Club Name') {
+                alert('Please Select Club Name');
+                distMem.focus();
+                return false;
+            }
+
+            return true;
+        }
+</script>
+   
+   
+    <%-- <script language="javascript" type="text/javascript">     
+
+    var cltr = 'ctl00_ContentPlaceHolder1_';
+    function AllowedIW(obj) {
+        if (obj.checked) { document.getElementById("trIW").style.display = 'block'; }
+        else { document.getElementById("trIW").style.display = 'none'; }
+    }
+
+    function AllowedBEN(obj) {
+        if (obj.checked) { document.getElementById("trBEN").style.display = 'block'; }
+        else { document.getElementById("trBEN").style.display = 'none'; }
+    }
+    function AllowedRCC(obj) {
+        if (obj.checked) { document.getElementById("trRCC").style.display = 'block'; }
+        else { document.getElementById("trRCC").style.display = 'none'; }
+    }
+
+    function AllowedSrCi(obj) {
+        if (obj.checked) { document.getElementById("trSrCi").style.display = 'block'; }
+        else { document.getElementById("trSrCi").style.display = 'none'; }
+    }
+
+    function AllowedRotaract(obj) {
+        if (obj.checked) {
+            document.getElementById("trRtr").style.display = 'block';
+            document.getElementById("trRtrGrid").style.display = 'block';
+         }
+        else {
+            document.getElementById("trRtr").style.display = 'none';
+            document.getElementById("trRtrGrid").style.display = 'none';
+         }
+    }
+
+    function AllowedIntract(obj) {
+        if (obj.checked) {
+            document.getElementById("trIntr").style.display = 'block';
+            document.getElementById("trItrGrid").style.display = 'block';
+            
+         }
+         else {
+             document.getElementById("trIntr").style.display = 'none';
+             document.getElementById("trItrGrid").style.display = 'none';
+        }
+    }
+  
+
+    function NotAllowedIW(odb) {
+        if (odb.checked) { document.getElementById("trIW").style.display = 'none'; }
+        else { document.getElementById("trIW").style.display = 'block'; }
+    }
+
+    function NotAllowedRCC(odb) {
+        if (odb.checked) { document.getElementById("trRCC").style.display = 'none'; }
+        else { document.getElementById("trRCC").style.display = 'block'; }
+    }
+    
+    function NotAllowedBEN(odb) {
+        if (odb.checked) { document.getElementById("trBEN").style.display = 'none'; }
+        else { document.getElementById("trBEN").style.display = 'block'; }
+    }
+
+    function NotAllowedSrCi(odb) {
+        if (odb.checked) { document.getElementById("trSrCi").style.display = 'none'; }
+        else { document.getElementById("trSrCi").style.display = 'block'; }
+    }
+
+    function NotAllowedRotaract(odb) {
+        if (odb.checked) {
+            document.getElementById("trRtr").style.display = 'none';
+            document.getElementById("trRtrGrid").style.display = 'none';
+         }
+         else {
+             document.getElementById("trRtr").style.display = 'block';
+             document.getElementById("trRtrGrid").style.display = 'block';
+        }
+    }
+
+    function NotAllowedIntract(odb) {
+        if (odb.checked) { document.getElementById("trIntr").style.display = 'none'; }
+        else { document.getElementById("trIntr").style.display = 'block'; }
+    }
+
+    window.onload = function() 
+    {
+        document.getElementById("trIW").style.display = 'none';
+        document.getElementById("trRCC").style.display = 'none';
+        document.getElementById("trSrCi").style.display = 'none';
+        document.getElementById("trBEN").style.display = 'none';
+        document.getElementById("trRtr").style.display = 'none';
+        document.getElementById("trIntr").style.display = 'none';
+        document.getElementById("trRtrGrid").style.display = 'none';
+        document.getElementById("trItrGrid").style.display = 'none';
+
+    }
+  
+     
+ </script>--%>
+
+    <style type="text/css">
+    .style4
+    {
+        color: #FF0000;
+    }
+        .style5
+        {
+            text-align: left;
+        } 
+        .style7
+        {
+            text-align: right;
+        }
+        p.MsoNormal
+	{margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	        margin-left: 0in;
+            margin-right: 0in;
+            margin-top: 0in;
+        }
+    </style>
+    
+    
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+   
+    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+    <ContentTemplate>
+    
+   
+       <table style="width:100%;" border="0" class="txt" align="center" cellpadding="0" cellspacing="5" >
+         <tr>
+              
+               <td colspan="4" class="header_title">Add District Rotary Club Data</td>
+            </tr>
+          
+    
+          
+            <tr>
+              <td valign="top" class="style7" width="140">&nbsp;</td>
+              <td width="5" valign="top" class="style5">&nbsp;</td>     
+              <td  align="right" valign="top" width="655px" colspan="2">
+                  <span class="style4">* </span>Denote Madatory Field.</td>
+            </tr>
+          
+     <tr>
+              <td colspan="4" class="header_subtitle" >Club Details</td>
+            </tr>
+            <tr>
+              <td align="right">Rotary Club of</td>
+              <td class="style1" >:</td>
+               <td class="style1" colspan="2">
+                    <asp:DropDownList ID="DDLClubName" runat="server" CssClass="txt" AppendDataBoundItems="true"
+                        DataSourceID="DSDistClubNo" DataTextField="club_name" DataValueField="id" 
+                        AutoPostBack="True" onselectedindexchanged="DDLClubName_SelectedIndexChanged">
+                        
+                        <asp:ListItem>Select Club Name</asp:ListItem>
+                    </asp:DropDownList>
+                  </td>
+            </tr>
+            
+             <tr>
+              <td align="right">RI Club No.</td>
+              <td class="style1" >:</td>
+              <td class="style1" colspan="2">
+                    <asp:Label ID="lblClubNo" runat="server"></asp:Label>
+                  </td>
+            </tr>
+            <%--<tr>
+              <td align="right">Club Name</td>
+              <td class="style1" >:</td>
+              <td class="style1">
+                  <asp:Label ID="lblClubName" runat="server"></asp:Label>
+                 </td>
+            </tr>--%>
+             <tr>
+              <td align="right">Charter Date</td>
+              <td class="style1" >:</td>
+              <td class="style1" colspan="2">
+                 
+                  <asp:Label ID="lblCharterDate" runat="server"></asp:Label>
+                 
+                 </td>
+            </tr>
+            <tr>
+              <td align="right">Meeting Day</td>
+              <td class="style1" >:</td>
+              <td class="style1" colspan="2">
+                 
+                  <asp:Label ID="lblMeetingDay" runat="server"></asp:Label>
+                 
+                 </td>
+            </tr>
+            <tr>
+              <td align="right">Meeting Time</td>
+              <td class="style1" >:</td>
+              <td class="style1" colspan="2">
+                 
+                  <asp:Label ID="lblMeetingTime" runat="server"></asp:Label>
+                 
+                 </td>
+            </tr>
+            <tr>
+              <td align="right">Meeting Venue</td>
+              <td class="style1" >:</td>
+              <td class="style1" colspan="2">
+                 
+                  <asp:Label ID="lblVenue" runat="server"></asp:Label>
+                 
+                 </td>
+            </tr>
+            
+            <tr>
+              <td align="right">GPS Coordinates</td>
+              <td class="style1" >:</td>
+              <td class="style1" colspan="2">
+                 
+                  <asp:Label ID="lblGPS" runat="server"></asp:Label>
+                 
+                 </td>
+            </tr>
+            
+            <tr>
+              <td>&nbsp;</td>
+              <td >&nbsp;</td>
+              <td class="style1" colspan="2">&nbsp;</td>                     
+
+            </tr>
+            
+            
+            
+            
+            
+             <tr>
+              <td colspan="4" class="header_subtitle" >Parteners in Service</td>
+            </tr>
+               <tr>
+              <td class="style7" ><div align="right">Inner Wheel</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle" colspan="2">
+              <asp:RadioButtonList ID="rbtnIW" runat="server" 
+                      RepeatDirection="Horizontal" AutoPostBack="True" 
+                      onselectedindexchanged="rbtnIW_SelectedIndexChanged">
+                      <asp:ListItem Text="Yes" Value="Yes" ></asp:ListItem>
+                      <asp:ListItem Selected="True" Text="No" Value="No" ></asp:ListItem>
+                  </asp:RadioButtonList>
+              
+                  </td>
+            </tr>
+            
+            
+             <tr ID="trIW" runat="server">
+                 <td colspan="4" class="style7" >
+                    
+                     <table width="860px">
+                        <tr>
+                            <td width="140px" class="style7">IW Club of</td>
+                            <td width="5px">:</td>
+                            <td width="655px" align="left">
+                                <asp:TextBox ID="txtIwClubname" runat="server" Width="350px"></asp:TextBox>&nbsp;<asp:Button 
+                                    ID="btnAddIW" runat="server" Text="Add" Width="60px" 
+                                    onclick="btnAddIW_Click" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="140px" class="style7">&nbsp;</td>
+                            <td width="5px">&nbsp;</td>
+                            <td width="655px" align="left">
+                               
+       <telerik:RadGrid ID="RadGridIW" runat="server" AllowPaging="True"  AllowSorting="True" GridLines="None" Width="415px" 
+               Skin="WebBlue"  PageSize="100"   onitemcommand="RadGridIW_ItemCommand" >
+<HeaderContextMenu EnableAutoScroll="True"></HeaderContextMenu>
+
+<MasterTableView autogeneratecolumns="False" >
+<RowIndicatorColumn>
+<HeaderStyle Width="20px"></HeaderStyle>
+</RowIndicatorColumn>
+
+<ExpandCollapseColumn>
+<HeaderStyle Width="20px"></HeaderStyle>
+</ExpandCollapseColumn>
+<CommandItemSettings ExportToPdfText="Export to Pdf"></CommandItemSettings>
+    <Columns>
+      
+        
+      <telerik:GridTemplateColumn HeaderText="Sr."  HeaderStyle-Width="25px">
+        <ItemTemplate>
+        <%# Container.DataSetIndex +1 %>
+        </ItemTemplate>
+        <ItemStyle Width="20px" VerticalAlign="Top" HorizontalAlign="Left"></ItemStyle>
+        </telerik:GridTemplateColumn>
+        
+        <telerik:GridTemplateColumn HeaderText="Club Name"  >
+        <ItemTemplate>
+        <%# Eval("club_name") %>
+        </ItemTemplate>
+         <HeaderStyle Width="360px" HorizontalAlign="Left" />
+            <ItemStyle Width="360px" HorizontalAlign="Left" VerticalAlign="Top" />
+        </telerik:GridTemplateColumn>
+        
+        <telerik:GridTemplateColumn HeaderText="Action" AllowFiltering="false" HeaderStyle-Font-Underline="false">        
+            <ItemTemplate>
+                <cc1:ConfirmButtonExtender ID="ConfirmButtonExtender1" runat="server" ConfirmText="Do you want to delete?" TargetControlID="imgDeleteP">
+                </cc1:ConfirmButtonExtender>
+                <asp:ImageButton ID="imgDeleteP" CommandName="Delete" ToolTip="Delete" 
+                    CommandArgument='<%# Eval("iw_id") %>' runat="Server" 
+                    AlternateText="Delete" ImageUrl="~/admin_icons/delete.gif" />
+            </ItemTemplate>
+             <HeaderStyle HorizontalAlign="Center" Width="30px" />
+             <ItemStyle HorizontalAlign="Center" Width="30px" VerticalAlign="Top" />
+</telerik:GridTemplateColumn> 
+                
+         
+      
+    </Columns>
+</MasterTableView>
+               <HeaderStyle Font-Bold="True" /><AlternatingItemStyle CssClass="treeView" /><ItemStyle CssClass="treeView" />
+           </telerik:RadGrid>
+              
+                            </td>
+                        </tr>
+                     </table>
+                    
+                 </td>  
+         </tr>
+            
+            
+             <tr>
+              <td class="style7" ><div align="right">Rotary Community Corps</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle" colspan="2">
+              <asp:RadioButtonList ID="rbtnRCC" runat="server" 
+                      RepeatDirection="Horizontal" AutoPostBack="True" 
+                      onselectedindexchanged="rbtnRCC_SelectedIndexChanged">
+                      <asp:ListItem Text="Yes" Value="Yes">Yes</asp:ListItem>
+                      <asp:ListItem Selected="True" Text="No" Value="No" >No</asp:ListItem>
+                  </asp:RadioButtonList>
+                  </td>
+            </tr>
+            
+               <tr ID="trRCC" runat="server">
+                 <td colspan="4" class="style7" >
+                    
+                     <table width="860px">
+                        <tr>
+                            <td width="140px" class="style7">Name</td>
+                            <td width="5px">:</td>
+                            <td width="655px" align="left">
+                                <asp:TextBox ID="txtRCCname" runat="server" Width="350px"></asp:TextBox>&nbsp;<asp:Button 
+                                    ID="btnAddRCC" runat="server" Text="Add" Width="60px" 
+                                    onclick="btnAddRCC_Click" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="140px" class="style7">&nbsp;</td>
+                            <td width="5px">&nbsp;</td>
+                            <td width="655px" align="left">
+                               <telerik:RadGrid ID="RadGridRCC" runat="server" AllowPaging="True"  
+                                    AllowSorting="True" GridLines="None" Width="415px" 
+               Skin="WebBlue"  PageSize="100" onitemcommand="RadGridRCC_ItemCommand" >
+<HeaderContextMenu EnableAutoScroll="True"></HeaderContextMenu>
+
+<MasterTableView autogeneratecolumns="False" >
+<RowIndicatorColumn>
+<HeaderStyle Width="20px"></HeaderStyle>
+</RowIndicatorColumn>
+
+<ExpandCollapseColumn>
+<HeaderStyle Width="20px"></HeaderStyle>
+</ExpandCollapseColumn>
+<CommandItemSettings ExportToPdfText="Export to Pdf"></CommandItemSettings>
+    <Columns>
+      
+        
+      <telerik:GridTemplateColumn HeaderText="Sr."  HeaderStyle-Width="25px">
+        <ItemTemplate>
+        <%# Container.DataSetIndex +1 %>
+        </ItemTemplate>
+        <ItemStyle Width="20px" VerticalAlign="Top" HorizontalAlign="Left"></ItemStyle>
+        </telerik:GridTemplateColumn>
+        
+        <telerik:GridTemplateColumn HeaderText="Name"  >
+        <ItemTemplate>
+        <%# Eval("name") %>
+        </ItemTemplate>
+         <HeaderStyle Width="360px" HorizontalAlign="Left" />
+            <ItemStyle Width="360px" HorizontalAlign="Left" VerticalAlign="Top" />
+        </telerik:GridTemplateColumn>
+        
+        <telerik:GridTemplateColumn HeaderText="Action" AllowFiltering="false" HeaderStyle-Font-Underline="false">        
+            <ItemTemplate>
+                <cc1:ConfirmButtonExtender ID="ConfirmButtonExtender1" runat="server" ConfirmText="Do you want to delete?" TargetControlID="imgDeleteP">
+                </cc1:ConfirmButtonExtender>
+                <asp:ImageButton ID="imgDeleteP" CommandName="Delete" ToolTip="Delete" 
+                    CommandArgument='<%# Eval("rcc_id") %>' runat="Server" 
+                    AlternateText="Delete" ImageUrl="~/admin_icons/delete.gif" />
+            </ItemTemplate>
+             <HeaderStyle HorizontalAlign="Center" Width="30px" />
+             <ItemStyle HorizontalAlign="Center" Width="30px" VerticalAlign="Top" />
+</telerik:GridTemplateColumn> 
+                
+         
+      
+    </Columns>
+</MasterTableView>
+               <HeaderStyle Font-Bold="True" /><AlternatingItemStyle CssClass="treeView" /><ItemStyle CssClass="treeView" />
+           </telerik:RadGrid>
+                            </td>
+                        </tr>
+                     </table>
+                    
+                 </td>  
+         </tr>
+         
+          <tr>
+              <td class="style7" ><div align="right">Sr. Citizen's Club</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle" colspan="2">
+                  <asp:RadioButtonList ID="rbtnSrCi" runat="server" 
+                      RepeatDirection="Horizontal" AutoPostBack="True" 
+                      onselectedindexchanged="rbtnSrCi_SelectedIndexChanged">
+                       <asp:ListItem Text="Yes" Value="Yes" >Yes</asp:ListItem>
+                      <asp:ListItem Selected="True" Text="No" Value="No" >No</asp:ListItem>
+                  </asp:RadioButtonList>
+                  </td>
+            </tr>
+            
+            <tr ID="trSrCi" runat="server">
+                 <td colspan="4" >
+                    
+                    <table width="860px">
+                        <tr>
+                            <td width="140px" class="style7">Club Name</td>
+                            <td width="5px">:</td>
+                            <td width="655px" align="left">
+                                <asp:TextBox ID="txtSrCitiznName" runat="server" Width="350px"></asp:TextBox>&nbsp;<asp:Button 
+                                    ID="btnSrCiAdd" runat="server" Text="Add" Width="60px" 
+                                    onclick="btnSrCiAdd_Click" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="140px" class="style7">&nbsp;</td>
+                            <td width="5px">&nbsp;</td>
+                            <td width="655px" align="left">
+                                <telerik:RadGrid ID="RadGridSrCtn" runat="server" AllowPaging="True"  
+                                    AllowSorting="True" GridLines="None" Width="415px" 
+               Skin="WebBlue"  PageSize="100" onitemcommand="RadGridSrCtn_ItemCommand" >
+<HeaderContextMenu EnableAutoScroll="True"></HeaderContextMenu>
+
+<MasterTableView autogeneratecolumns="False" >
+<RowIndicatorColumn>
+<HeaderStyle Width="20px"></HeaderStyle>
+</RowIndicatorColumn>
+
+<ExpandCollapseColumn>
+<HeaderStyle Width="20px"></HeaderStyle>
+</ExpandCollapseColumn>
+<CommandItemSettings ExportToPdfText="Export to Pdf"></CommandItemSettings>
+    <Columns>
+      
+        
+      <telerik:GridTemplateColumn HeaderText="Sr."  HeaderStyle-Width="25px">
+        <ItemTemplate>
+        <%# Container.DataSetIndex +1 %>
+        </ItemTemplate>
+        <ItemStyle Width="20px" VerticalAlign="Top" HorizontalAlign="Left"></ItemStyle>
+        </telerik:GridTemplateColumn>
+        
+        <telerik:GridTemplateColumn HeaderText="Club Name"  >
+        <ItemTemplate>
+        <%# Eval("club_name") %>
+        </ItemTemplate>
+         <HeaderStyle Width="360px" HorizontalAlign="Left" />
+            <ItemStyle Width="360px" HorizontalAlign="Left" VerticalAlign="Top" />
+        </telerik:GridTemplateColumn>
+        
+        <telerik:GridTemplateColumn HeaderText="Action" AllowFiltering="false" HeaderStyle-Font-Underline="false">        
+            <ItemTemplate>
+                <cc1:ConfirmButtonExtender ID="ConfirmButtonExtender1" runat="server" ConfirmText="Do you want to delete?" TargetControlID="imgDeleteP">
+                </cc1:ConfirmButtonExtender>
+                <asp:ImageButton ID="imgDeleteP" CommandName="Delete" ToolTip="Delete" 
+                    CommandArgument='<%# Eval("ctn_id") %>' runat="Server" 
+                    AlternateText="Delete" ImageUrl="~/admin_icons/delete.gif" />
+            </ItemTemplate>
+             <HeaderStyle HorizontalAlign="Center" Width="30px" />
+             <ItemStyle HorizontalAlign="Center" Width="30px" VerticalAlign="Top" />
+</telerik:GridTemplateColumn> 
+                
+         
+      
+    </Columns>
+</MasterTableView>
+               <HeaderStyle Font-Bold="True" /><AlternatingItemStyle CssClass="treeView" /><ItemStyle CssClass="treeView" />
+           </telerik:RadGrid>
+                            </td>
+                        </tr>
+                     </table>
+                    
+                 </td>  
+         </tr>
+         
+          <tr>
+              <td class="style7" ><div align="right">Interact Club</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle" colspan="2">
+                  <asp:RadioButtonList ID="rbtnInteract" runat="server" 
+                      RepeatDirection="Horizontal" AutoPostBack="True" 
+                      onselectedindexchanged="rbtnInteract_SelectedIndexChanged">
+                      <asp:ListItem Text="Yes" Value="Yes" >Yes</asp:ListItem>
+                      <asp:ListItem Selected="True" Text="No" Value="No" >No</asp:ListItem>
+                  </asp:RadioButtonList>
+                  </td>
+            </tr>
+            
+            
+             <tr ID="trIntr" runat="server">
+                 <td colspan="4" class="style7" >
+                    
+                     <table width="860px">
+                        <tr>
+                            <td width="140px" class="style7">Select Club</td>
+                            <td width="5px">:</td>
+                            <td width="655px" align="left">
+                                <asp:DropDownList ID="DDLIntractClub" runat="server" 
+                                    AppendDataBoundItems="True" CssClass="txt1" DataSourceID="DSInteract" 
+                                    DataTextField="club_name" DataValueField="interact_id" >
+                   <asp:ListItem>Select</asp:ListItem>
+                  </asp:DropDownList>&nbsp;<asp:Button ID="btnAddInteract" runat="server" Text="Add" Width="60px" 
+                                    onclick="btnAddInteract_Click" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="140px" class="style7">&nbsp;</td>
+                            <td width="5px">&nbsp;</td>
+                            <td width="655px" align="left">
+                               
+       <telerik:RadGrid ID="RadGridInteract" runat="server" AllowPaging="True"  AllowSorting="True" 
+                                    GridLines="None" Width="415px" 
+               Skin="WebBlue"  PageSize="100" onitemcommand="RadGridInteract_ItemCommand" >
+<HeaderContextMenu EnableAutoScroll="True"></HeaderContextMenu>
+
+<MasterTableView autogeneratecolumns="False" >
+<RowIndicatorColumn>
+<HeaderStyle Width="20px"></HeaderStyle>
+</RowIndicatorColumn>
+
+<ExpandCollapseColumn>
+<HeaderStyle Width="20px"></HeaderStyle>
+</ExpandCollapseColumn>
+<CommandItemSettings ExportToPdfText="Export to Pdf"></CommandItemSettings>
+    <Columns>
+      
+        
+      <telerik:GridTemplateColumn HeaderText="Sr."  HeaderStyle-Width="25px">
+        <ItemTemplate>
+        <%# Container.DataSetIndex +1 %>
+        </ItemTemplate>
+        <ItemStyle Width="20px" VerticalAlign="Top" HorizontalAlign="Left"></ItemStyle>
+        </telerik:GridTemplateColumn>
+        
+        <telerik:GridTemplateColumn HeaderText="Club Name"  >
+        <ItemTemplate>
+        <%# Eval("club_name") %>
+        </ItemTemplate>
+         <HeaderStyle Width="360px" HorizontalAlign="Left" />
+            <ItemStyle Width="360px" HorizontalAlign="Left" VerticalAlign="Top" />
+        </telerik:GridTemplateColumn>
+        
+        <telerik:GridTemplateColumn HeaderText="Action" AllowFiltering="false" HeaderStyle-Font-Underline="false">        
+            <ItemTemplate>
+                <cc1:ConfirmButtonExtender ID="ConfirmButtonExtender1" runat="server" ConfirmText="Do you want to delete?" TargetControlID="imgDeleteP">
+                </cc1:ConfirmButtonExtender>
+                <asp:ImageButton ID="imgDeleteP" CommandName="Delete" ToolTip="Delete" 
+                    CommandArgument='<%# Eval("id") %>' runat="Server" 
+                    AlternateText="Delete" ImageUrl="~/admin_icons/delete.gif" />
+            </ItemTemplate>
+             <HeaderStyle HorizontalAlign="Center" Width="30px" />
+             <ItemStyle HorizontalAlign="Center" Width="30px" VerticalAlign="Top" />
+</telerik:GridTemplateColumn> 
+                
+         
+      
+    </Columns>
+</MasterTableView>
+               <HeaderStyle Font-Bold="True" /><AlternatingItemStyle CssClass="treeView" /><ItemStyle CssClass="treeView" />
+           </telerik:RadGrid>
+              
+                            </td>
+                        </tr>
+                     </table>
+                    
+                 </td>  
+         </tr>
+            
+       
+            
+         <tr>
+              <td class="style7" ><div align="right">Rotaract Club</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle" colspan="2">
+                  <asp:RadioButtonList ID="rbtnRotaract" runat="server" 
+                      RepeatDirection="Horizontal" AutoPostBack="True" 
+                      onselectedindexchanged="rbtnRotaract_SelectedIndexChanged">
+                      <asp:ListItem Text="Yes" Value="Yes" >Yes</asp:ListItem>
+                      <asp:ListItem Selected="True" Text="No" Value="No" >No</asp:ListItem>
+                  </asp:RadioButtonList>
+                  </td>
+            </tr>
+             
+         
+             <tr ID="trRtr" runat="server">
+                 <td colspan="4" class="style7" >
+                    
+                     <table width="860px">
+                        <tr>
+                            <td width="140px" class="style7">Select Club</td>
+                            <td width="5px">:</td>
+                            <td width="655px" align="left">
+                               <asp:DropDownList ID="DDLRotaractClub" runat="server" 
+                      DataSourceID="DSRotarctClub" DataTextField="club_name"  
+                      AppendDataBoundItems="true" CssClass="txt1"
+                      DataValueField="rotaract_id" >
+                      <asp:ListItem>Select</asp:ListItem>
+                  </asp:DropDownList>&nbsp;<asp:Button ID="btnAddRotarct" runat="server" Text="Add" Width="60px" onclick="btnAddRotarct_Click"  />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="140px" class="style7">&nbsp;</td>
+                            <td width="5px">&nbsp;</td>
+                            <td width="655px" align="left">
+                               
+       <telerik:RadGrid ID="RadGridRotaract" runat="server" AllowPaging="True"  AllowSorting="True" 
+                                    GridLines="None" Width="415px" 
+               Skin="WebBlue"  PageSize="100" onitemcommand="RadGridRotaract_ItemCommand" >
+<HeaderContextMenu EnableAutoScroll="True"></HeaderContextMenu>
+
+<MasterTableView autogeneratecolumns="False" >
+<RowIndicatorColumn>
+<HeaderStyle Width="20px"></HeaderStyle>
+</RowIndicatorColumn>
+
+<ExpandCollapseColumn>
+<HeaderStyle Width="20px"></HeaderStyle>
+</ExpandCollapseColumn>
+<CommandItemSettings ExportToPdfText="Export to Pdf"></CommandItemSettings>
+    <Columns>
+      
+        
+      <telerik:GridTemplateColumn HeaderText="Sr."  HeaderStyle-Width="25px">
+        <ItemTemplate>
+        <%# Container.DataSetIndex +1 %>
+        </ItemTemplate>
+        <ItemStyle Width="20px" VerticalAlign="Top" HorizontalAlign="Left"></ItemStyle>
+        </telerik:GridTemplateColumn>
+        
+        <telerik:GridTemplateColumn HeaderText="Club Name"  >
+        <ItemTemplate>
+        <%# Eval("club_name") %>
+        </ItemTemplate>
+         <HeaderStyle Width="360px" HorizontalAlign="Left" />
+            <ItemStyle Width="360px" HorizontalAlign="Left" VerticalAlign="Top" />
+        </telerik:GridTemplateColumn>
+        
+        <telerik:GridTemplateColumn HeaderText="Action" AllowFiltering="false" HeaderStyle-Font-Underline="false">        
+            <ItemTemplate>
+                <cc1:ConfirmButtonExtender ID="ConfirmButtonExtender1" runat="server" ConfirmText="Do you want to delete?" TargetControlID="imgDeleteP">
+                </cc1:ConfirmButtonExtender>
+                <asp:ImageButton ID="imgDeleteP" CommandName="Delete" ToolTip="Delete" 
+                    CommandArgument='<%# Eval("id") %>' runat="Server" 
+                    AlternateText="Delete" ImageUrl="~/admin_icons/delete.gif" />
+            </ItemTemplate>
+             <HeaderStyle HorizontalAlign="Center" Width="30px" />
+             <ItemStyle HorizontalAlign="Center" Width="30px" VerticalAlign="Top" />
+</telerik:GridTemplateColumn> 
+                
+         
+      
+    </Columns>
+</MasterTableView>
+               <HeaderStyle Font-Bold="True" /><AlternatingItemStyle CssClass="treeView" /><ItemStyle CssClass="treeView" />
+           </telerik:RadGrid>
+              
+                            </td>
+                        </tr>
+                     </table>
+                    
+                 </td>  
+         </tr>
+            
+             <tr>
+              <td colspan="4" class="header_subtitle" >Club Data</td>
+            </tr>
+            
+                         
+            
+            
+              <tr>
+              <td class="style7" ><div align="right">PHF</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle" colspan="2">
+                  <telerik:RadNumericTextBox ID="txtPHF" Runat="server" CssClass="txt" 
+                      DataType="System.Int32" MaxLength="3" Width="35px">
+                      <NumberFormat AllowRounding="False" DecimalDigits="0" GroupSeparator="" />
+                  </telerik:RadNumericTextBox>
+                  </td>
+            </tr>
+            
+              <tr>
+              <td class="style7" ><div align="right">TRFSM</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle" colspan="2">
+                  <telerik:RadNumericTextBox ID="txtTRFSM" Runat="server" CssClass="txt" 
+                      DataType="System.Int32" MaxLength="3" Width="35px">
+                      <NumberFormat AllowRounding="False" DecimalDigits="0" GroupSeparator="" />
+                  </telerik:RadNumericTextBox>
+                  </td>
+            </tr>
+            
+              <tr>
+              <td class="style7" ><div align="right">MD</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle" colspan="2">
+                  <telerik:RadNumericTextBox ID="txtMD" Runat="server" CssClass="txt" 
+                      DataType="System.Int32" MaxLength="3" Width="35px">
+                      <NumberFormat AllowRounding="False" DecimalDigits="0" GroupSeparator="" />
+                  </telerik:RadNumericTextBox>
+                  </td>
+            </tr>
+            
+              <tr>
+              <td class="style7" ><div align="right">PHSM</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle" colspan="2">
+                  <telerik:RadNumericTextBox ID="txtPHSM" Runat="server" CssClass="txt" 
+                      DataType="System.Int32" MaxLength="3" Width="35px">
+                      <NumberFormat AllowRounding="False" DecimalDigits="0" GroupSeparator="" />
+                  </telerik:RadNumericTextBox>
+                  </td>
+            </tr>
+            
+             <tr>
+              <td ><div align="right">Benefactors</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle" colspan="2">
+              
+              
+                <table>
+              <tr>
+              <td>  
+                  <asp:RadioButtonList ID="rbtnBEN" runat="server" 
+                      RepeatDirection="Horizontal" AutoPostBack="True" 
+                      onselectedindexchanged="rbtnBEN_SelectedIndexChanged">
+                      <asp:ListItem Text="Yes" Value="Yes" >Yes</asp:ListItem>
+                      <asp:ListItem Selected="True" Text="No" Value="No">No</asp:ListItem>
+                  </asp:RadioButtonList>
+              </td>
+              <td>                  </td>
+                  </tr>
+                  </table>                
+                  </td>
+            </tr>
+            
+              <tr ID="trBEN" runat="server">
+                 <td colspan="4" >
+                    
+                   <table width="860px">
+                        <tr>
+                            <td width="140px" class="style7">Member&#39;s Name</td>
+                            <td width="5px">:</td>
+                            <td width="655px" align="left">
+                                <asp:DropDownList ID="DDLMemBen" runat="server" 
+                                    DataSourceID="DSMemExceptPresiSec" DataTextField="Name" 
+                                    DataValueField="MemberId" AppendDataBoundItems="true">
+                                    <asp:ListItem>Select</asp:ListItem>
+                                </asp:DropDownList>
+                                &nbsp;<asp:Button ID="btnAddBen" runat="server" Text="Add" Width="60px" 
+                                    onclick="btnAddBen_Click" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="140px" class="style7">&nbsp;</td>
+                            <td width="5px">&nbsp;</td>
+                            <td width="655px" align="left">
+                                 <telerik:RadGrid ID="RadGridBEN" runat="server" AllowPaging="True"  
+                                     AllowSorting="True" GridLines="None" Width="415px" 
+               Skin="WebBlue"  PageSize="100" onitemcommand="RadGridBEN_ItemCommand" OnNeedDataSource="RadGridBEN_NeedDataSource" >
+<HeaderContextMenu EnableAutoScroll="True"></HeaderContextMenu>
+
+<MasterTableView autogeneratecolumns="False" >
+<RowIndicatorColumn>
+<HeaderStyle Width="20px"></HeaderStyle>
+</RowIndicatorColumn>
+
+<ExpandCollapseColumn>
+<HeaderStyle Width="20px"></HeaderStyle>
+</ExpandCollapseColumn>
+<CommandItemSettings ExportToPdfText="Export to Pdf"></CommandItemSettings>
+    <Columns>
+      
+        
+      <telerik:GridTemplateColumn HeaderText="Sr."  HeaderStyle-Width="25px">
+        <ItemTemplate>
+        <%# Container.DataSetIndex +1 %>
+        </ItemTemplate>
+        <ItemStyle Width="20px" VerticalAlign="Top" HorizontalAlign="Left"></ItemStyle>
+        </telerik:GridTemplateColumn>
+        
+        <telerik:GridTemplateColumn HeaderText="Name"  >
+        <ItemTemplate>
+        <%# Eval("name") %>
+        </ItemTemplate>
+         <HeaderStyle Width="360px" HorizontalAlign="Left" />
+            <ItemStyle Width="360px" HorizontalAlign="Left" VerticalAlign="Top" />
+        </telerik:GridTemplateColumn>
+        
+        <telerik:GridTemplateColumn HeaderText="Action" AllowFiltering="false" HeaderStyle-Font-Underline="false">        
+            <ItemTemplate>
+                <cc1:ConfirmButtonExtender ID="ConfirmButtonExtender1" runat="server" ConfirmText="Do you want to delete?" TargetControlID="imgDeleteP">
+                </cc1:ConfirmButtonExtender>
+                <asp:ImageButton ID="imgDeleteP" CommandName="Delete" ToolTip="Delete" 
+                    CommandArgument='<%# Eval("ben_id") %>' runat="Server" 
+                    AlternateText="Delete" ImageUrl="~/admin_icons/delete.gif" />
+            </ItemTemplate>
+             <HeaderStyle HorizontalAlign="Center" Width="30px" />
+             <ItemStyle HorizontalAlign="Center" Width="30px" VerticalAlign="Top" />
+</telerik:GridTemplateColumn> 
+                
+         
+      
+    </Columns>
+</MasterTableView>
+               <HeaderStyle Font-Bold="True" /><AlternatingItemStyle CssClass="treeView" /><ItemStyle CssClass="treeView" />
+           </telerik:RadGrid>
+                            </td>
+                        </tr>
+                     </table>
+                    
+                 </td>  
+         </tr>
+            
+           
+                                  
+             
+             <tr>
+              <td valign="top" class="style7">District Secretary</td>
+              <td valign="top" class="style5">:</td>
+              <td valign="top" >
+                  <asp:DropDownList ID="DDLMem1" runat="server" DataSourceID="DSMembers" 
+                      DataTextField="Name" DataValueField="MemberId" AppendDataBoundItems="true" 
+                      CssClass="txt">
+                      <asp:ListItem Text="Select" Value="0"></asp:ListItem>
+                  </asp:DropDownList>
+                  &nbsp;Will be picked up from District Members.</td>
+              <td valign="top" width="500px" align="left">&nbsp;</td>
+            </tr>
+            
+             
+             <tr>
+              <td valign="top" class="style7">Group Coordinator</td>
+              <td valign="top" class="style5">:</td>
+              <td valign="top">
+                  <asp:DropDownList ID="DDLMem2" runat="server" DataSourceID="DSMembers" 
+                      DataTextField="Name" DataValueField="MemberId" AppendDataBoundItems="true" 
+                      CssClass="txt">
+                      <asp:ListItem Text="Select" Value="0"></asp:ListItem>
+                  </asp:DropDownList>
+                  &nbsp;Will be picked up from District Members.</td>
+              <td valign="top">&nbsp;</td>
+            </tr>
+                        
+             
+              <tr>
+              <td valign="top" class="style7">Assistant Governor</td>
+              <td valign="top" class="style5">:</td>
+              <td valign="top">
+                   <asp:DropDownList ID="DDLMem3" runat="server" DataSourceID="DSMembers" 
+                      DataTextField="Name" DataValueField="MemberId" AppendDataBoundItems="true" 
+                       CssClass="txt">
+                      <asp:ListItem Text="Select" Value="0"></asp:ListItem>
+                  </asp:DropDownList>
+                   &nbsp;Will be picked up from District Members.</td>
+              <td valign="top">&nbsp;</td>
+            </tr>
+              <tr>
+              <td colspan="4" class="header_subtitle" >Installation</td>
+            </tr>
+             <tr>
+              <td class="style7" ><div align="right">Installation Date</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle" colspan="2">
+                  <telerik:RadDatePicker ID="installationDate" Runat="server" Skin="WebBlue">
+                      <Calendar Skin="WebBlue" UseColumnHeadersAsSelectors="False" 
+                          UseRowHeadersAsSelectors="False" ViewSelectorText="x">
+                      </Calendar>
+                      <DatePopupButton HoverImageUrl="" ImageUrl="" />
+                      <DateInput DateFormat="dd/MM/yyyy" DisplayDateFormat="dd/MM/yyyy">
+                      </DateInput>
+                  </telerik:RadDatePicker>
+                  <telerik:RadDatePicker ID="ocvDate" Runat="server" Skin="WebBlue" 
+                      Visible="False">
+                      <Calendar Skin="WebBlue" UseColumnHeadersAsSelectors="False" 
+                          UseRowHeadersAsSelectors="False" ViewSelectorText="x">
+                      </Calendar>
+                      <DatePopupButton HoverImageUrl="" ImageUrl="" />
+                      <DateInput DateFormat="dd/MM/yyyy" DisplayDateFormat="dd/MM/yyyy">
+                      </DateInput>
+                  </telerik:RadDatePicker>
+                  </td>
+            </tr>
+            
+             <tr>
+              <td class="style7" ><div align="right">Installation Time</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle" colspan="2">
+                  <asp:DropDownList ID="DDLTimeH" runat="server" CssClass="txt">
+                  </asp:DropDownList>
+                  -&nbsp;<asp:DropDownList ID="DDLTimeM" runat="server" CssClass="txt1">
+                  </asp:DropDownList>
+                  -&nbsp;<asp:DropDownList ID="DDLTime" runat="server" CssClass="txt1">
+                      <asp:ListItem>AM</asp:ListItem>
+                      <asp:ListItem>PM</asp:ListItem>
+                  </asp:DropDownList>
+                  </td>
+            </tr>
+             <tr>
+              <td class="style7" ><div align="right">Chief Guest</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle" colspan="2">
+                  <asp:TextBox ID="txtChiefGuest" runat="server" Width="300px"></asp:TextBox>
+                  </td>
+            </tr>
+            
+            <tr>
+              <td class="style7" ><div align="right">Venue</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle" colspan="2">
+                  <asp:TextBox ID="txtVenue" runat="server" Width="600px"></asp:TextBox>
+                  </td>
+            </tr>
+            
+            
+            
+              <tr>
+              <td colspan="4" class="header_subtitle" >Club TRF Status</td>
+            </tr> 
+          
+         <tr>
+             <td class="style7">
+                 &nbsp;</td>
+             <td class="style1">
+                 &nbsp;</td>
+             <td align="left" colspan="2" valign="middle">
+                 <asp:RadioButtonList ID="chkTRFStatus" runat="server" 
+                     RepeatDirection="Horizontal">
+                     <asp:ListItem Text="100% PHFSM Club" Value="0"></asp:ListItem>
+                     <asp:ListItem Text="100% PHF Club" Value="1"></asp:ListItem>                     
+                     <asp:ListItem Text="100% EREY Club" Value ="2"></asp:ListItem>
+                 </asp:RadioButtonList>
+             </td>
+         </tr>
+            
+            
+            
+            
+            
+            <tr>
+              <td colspan="4" align="center" >
+                  <asp:Button ID="btnSubmit" runat="server" TabIndex="63" Text="Submit" 
+                      CssClass="btn" 
+                      ValidationGroup="Clubs" OnClientClick="ChkDDLVal();" onclick="btnSubmit_Click"  />
+                  &nbsp;<asp:Button ID="btncancel" runat="server" TabIndex="64" Text="Cancel" 
+                      CssClass="btn" CausesValidation="False" onclick="btncancel_Click"/>
+                  
+                  &nbsp;<asp:SqlDataSource ID="DSRotarctClub" runat="server" 
+                      ConnectionString="<%$ ConnectionStrings:ConnString %>" 
+                      SelectCommand="SELECT * FROM [rotaract_club_tbl] order by club_name">
+                  </asp:SqlDataSource>
+                  <asp:SqlDataSource ID="DSMembers" runat="server" 
+                      ConnectionString="<%$ ConnectionStrings:ConnString %>" 
+                      SelectCommand="SELECT * FROM [View_Disttt3140Members] ORDER BY [Name]">
+                  </asp:SqlDataSource>
+                  <asp:SqlDataSource ID="DSMemExceptPresiSec" runat="server" 
+                      ConnectionString="<%$ ConnectionStrings:ConnString %>" 
+                      SelectCommand="SELECT * FROM [View_Disttt3140Members] where Designation !='President' and Designation !='Secretary' ORDER BY [Name]">
+                  </asp:SqlDataSource>
+                  <asp:SqlDataSource ID="DSInteract" runat="server" 
+                      ConnectionString="<%$ ConnectionStrings:ConnString %>" 
+                      SelectCommand="SELECT * FROM [interact_club_tbl] ORDER BY [club_name]">
+                  </asp:SqlDataSource>
+                  <asp:SqlDataSource ID="DSDistClubNo" runat="server" 
+                      ConnectionString="<%$ ConnectionStrings:ConnString %>" 
+                      SelectCommand="SELECT * FROM [clubs_tbl] order by club_name asc">
+                  </asp:SqlDataSource>
+                 </td>
+            </tr>
+            
+           
+          </table>
+
+ </ContentTemplate>
+    </asp:UpdatePanel>
+</asp:Content>
+

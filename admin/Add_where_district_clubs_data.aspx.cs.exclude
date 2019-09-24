@@ -1,0 +1,1003 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+
+public partial class admin_Add_where_district_clubs_data : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Session["user"] != null)
+        {
+            if (!IsPostBack)
+            {
+                BindTime();
+
+                trIW.Visible = false;
+                trRCC.Visible = false;
+                trSrCi.Visible = false;
+                trIntr.Visible = false;
+                trRtr.Visible = false;
+                trBEN.Visible = false;
+
+                if (Request.QueryString["id"] != null)
+                {
+                    int id = int.Parse(Request.QueryString["id"].ToString());
+                    GetDistClubData(id);
+                }
+            }
+        }
+        else
+        {
+            Session.Abandon();
+            Response.Redirect("Default.aspx");
+        }
+    }
+
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        if (Page.IsValid)
+        {
+            int disttClubId = int.Parse(DDLClubName.SelectedValue.ToString());
+            UpdateDistClubData(disttClubId);
+
+            //try
+            //{
+            //    if (Request.QueryString["id"] != null)
+            //    {
+            //        int id = int.Parse(Request.QueryString["id"].ToString());
+            //        // UpdateDistClubData(id);
+            //    }
+            //    else
+            //    {
+            //        AddDistClubData();
+            //    }
+            //}
+
+            //catch
+            //{
+            //}
+        }
+
+
+    }
+    private void GetDistClubData(int id)
+    {
+        DBconnection obj = new DBconnection();
+        obj.SetCommandSP = "m_get_district_club";
+        obj.AddParam("@id", id);
+        DataTable dt = new DataTable();
+        dt = obj.ExecuteTable();
+        if (dt.Rows.Count > 0)
+        {
+            //txtTitle.Text = dt.Rows[0]["club_name"].ToString();
+            //txtClubNo.Text = dt.Rows[0]["club_no"].ToString();
+
+            //string[] charterDate = dt.Rows[0]["charter_date"].ToString().Split('/');
+            //if (charterDate.Length > 1)
+            //{
+            //    DDLDays.SelectedValue = charterDate[0].ToString();
+            //    DDLMonth.SelectedItem.Text = charterDate[1].ToString();
+            //    DDLYear.SelectedValue = charterDate[2].ToString();
+            //}
+
+            //txtNoOfMembers.Text = dt.Rows[0]["no_of_members"].ToString();
+
+            //string[] time = dt.Rows[0]["time"].ToString().Split(':');
+            //DDLTimeH.SelectedValue = time[0].ToString();
+            //DDLTimeM.SelectedValue = time[1].ToString();
+            //DDLTime2.SelectedValue = time[2].ToString();
+
+            //DDLDay.SelectedItem.Text = dt.Rows[0]["meet_days"].ToString();
+            //txtVenue1.Text = dt.Rows[0]["venue1"].ToString();
+            //txtVenue2.Text = dt.Rows[0]["venue2"].ToString();
+            //txtVenue3.Text = dt.Rows[0]["venue3"].ToString();
+
+            //txtCity.Text = dt.Rows[0]["city"].ToString();
+            //txtPin.Text = dt.Rows[0]["pin"].ToString();
+            //txtState.Text = dt.Rows[0]["state"].ToString();
+            //txtCountry.Text = dt.Rows[0]["country"].ToString();
+            //txtLatitude.Text = dt.Rows[0]["gps_latitude"].ToString();
+            //txtLongitude.Text = dt.Rows[0]["gps_longitude"].ToString();
+            //string location_map = dt.Rows[0]["location_map"].ToString();
+            //Session["locationmap"] = location_map;
+
+            txtPHF.Text = dt.Rows[0]["phf"].ToString();
+            txtTRFSM.Text = dt.Rows[0]["trfsm"].ToString();
+            txtMD.Text = dt.Rows[0]["md"].ToString();
+            txtPHSM.Text = dt.Rows[0]["phsm"].ToString();
+            try
+            {
+                ocvDate.DbSelectedDate = DateTime.Parse(dt.Rows[0]["ocv_date"].ToString());
+            }
+            catch { }
+
+            //BindRotaractGrid(id);
+        }
+    }
+    //private void AddDistClubData()
+    //{
+    //    if (Page.IsValid)
+    //    {            
+
+    //        DistrictClub dc = new DistrictClub();
+
+    //        try { dc.Phf = int.Parse(txtPHF.Text.ToString()); }
+    //        catch { dc.Phf = 0; }
+
+    //        try { dc.Trfsm = int.Parse(txtTRFSM.Text.ToString()); }
+    //        catch { dc.Trfsm = 0; }
+    //        try
+    //        {
+    //            dc.Md = int.Parse(txtMD.Text.ToString());
+    //        }
+    //        catch { dc.Md = 0; }
+    //        try
+    //        {
+    //            dc.Phsm = int.Parse(txtPHSM.Text.ToString());
+    //        }
+    //        catch { dc.Phsm = 0; }
+
+    //        //try { dc.No_of_members = int.Parse(txtNoOfMembers.Text.ToString()); }
+    //        //catch { dc.No_of_members = 0; }
+
+    //        dc.DS = DDLMem1.SelectedItem.Text.Trim().ToString();
+    //        dc.GC = DDLMem1.SelectedItem.Text.Trim().ToString();
+    //        dc.AG = DDLMem1.SelectedItem.Text.Trim().ToString();
+
+    //        int exe = dc.AddDistrictClub();
+    //        if (exe > 0)
+    //        {               
+    //            //clear();
+    //            string jv = "<script>alert('Record Added Successfully');</script>";
+    //            ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "alert", jv, false);
+    //        }
+    //    }
+    //}
+    private void UpdateDistClubData(int id)
+    {
+        try
+        {
+            DistrictClub dc = new DistrictClub();
+            dc.Id = id;
+
+            try { dc.Phf = int.Parse(txtPHF.Text.ToString()); }
+            catch { dc.Phf = 0; }
+
+            try { dc.Trfsm = int.Parse(txtTRFSM.Text.ToString()); }
+            catch { dc.Trfsm = 0; }
+            try
+            {
+                dc.Md = int.Parse(txtMD.Text.ToString());
+            }
+            catch { dc.Md = 0; }
+            try
+            {
+                dc.Phsm = int.Parse(txtPHSM.Text.ToString());
+            }
+            catch { dc.Phsm = 0; }
+
+            //try { dc.No_of_members = int.Parse(txtNoOfMembers.Text.ToString()); }
+            //catch { dc.No_of_members = 0; }
+
+            dc.DS = DDLMem1.SelectedItem.Text.Trim().ToString();
+            dc.GC = DDLMem2.SelectedItem.Text.Trim().ToString();
+            dc.AG = DDLMem3.SelectedItem.Text.Trim().ToString();
+
+            try
+            {
+                dc.OCVDate = DateTime.Parse(ocvDate.SelectedDate.ToString());
+            }
+            catch { dc.OCVDate = ocvDate.MinDate; }
+
+            
+            try
+            {
+                dc.InstallationDate = DateTime.Parse(installationDate.SelectedDate.ToString());
+            }
+            catch { dc.InstallationDate = installationDate.MinDate; }
+
+
+            dc.InstallationTime = DDLTimeH.SelectedItem.Text.Trim() + ":" + DDLTimeM.SelectedItem.Text.Trim() + ":" + DDLTime.SelectedItem.Text.Trim();
+            dc.ChiefGuest = txtChiefGuest.Text.Trim().ToString();
+            dc.InstallationVenue = txtVenue.Text.Trim().ToString();
+            try
+            {
+                dc.ClubTrf = chkTRFStatus.SelectedItem.Text.Trim().ToString();
+            }
+            catch { dc.ClubTrf = ""; }
+
+
+
+            int exe = dc.UpdateDistClubData();
+            if (exe > 0)
+            {
+                UpdateDistClubIW();
+                UpdateDistClubRCC();
+                UpdateDistClubSrCtn();
+                UpdateDistClubInteract();
+                UpdateDistClubRotaract();
+                UpdateDistClubBEN();
+                clear();
+                string jv = "<script>alert('Record Added Successfully');</script>";
+                ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "alert", jv, false);
+            }
+        }
+        catch { }
+    }
+
+
+    private void UpdateDistClubIW()
+    {
+        try
+        {
+            int disttClubId = int.Parse(DDLClubName.SelectedValue.ToString());
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Update_DistClub_IW";
+            obj.AddParam("@dist_id", disttClubId);
+            obj.ExecuteNonQuery();
+        }
+        catch { }
+    }
+
+    private void UpdateDistClubRCC()
+    {
+        try
+        {
+            int disttClubId = int.Parse(DDLClubName.SelectedValue.ToString());
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Update_DistClub_RCC";
+            obj.AddParam("@dist_id", disttClubId);
+            obj.ExecuteNonQuery();
+        }
+        catch { }
+    }
+
+    private void UpdateDistClubSrCtn()
+    {
+        try
+        {
+            int disttClubId = int.Parse(DDLClubName.SelectedValue.ToString());
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Update_DistClub_SrCtn";
+            obj.AddParam("@dist_id", disttClubId);
+            obj.ExecuteNonQuery();
+        }
+        catch { }
+    }
+
+    private void UpdateDistClubInteract()
+    {
+        try
+        {
+            int disttClubId = int.Parse(DDLClubName.SelectedValue.ToString());
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Update_DistClub_Interact";
+            obj.AddParam("@dist_id", disttClubId);
+            obj.ExecuteNonQuery();
+        }
+        catch { }
+    }
+
+    private void UpdateDistClubRotaract()
+    {
+        try
+        {
+            int disttClubId = int.Parse(DDLClubName.SelectedValue.ToString());
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Update_DistClub_Rotaract";
+            obj.AddParam("@dist_id", disttClubId);
+            obj.ExecuteNonQuery();
+        }
+        catch { }
+    }
+
+    private void UpdateDistClubBEN()
+    {
+        try
+        {
+            int disttClubId = int.Parse(DDLClubName.SelectedValue.ToString());
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Update_DistClub_BEN";
+            obj.AddParam("@dist_id", disttClubId);
+            obj.ExecuteNonQuery();
+        }
+        catch { }
+    }
+
+
+    //private void BindRotaractGrid(int disttId)
+    //{
+    //    DBconnection obj = new DBconnection();
+    //    obj.SetCommandQry = "select  ROW_NUMBER () OVER (ORDER BY [id] asc) AS RowNumber,club_name FROM rotaract_under_distclub_tbl where distt_id=" + disttId;
+    //    DataTable dt = new DataTable();
+    //    dt = obj.ExecuteTable();
+    //    if (dt.Rows.Count > 0)
+    //    {
+    //        RadGridRotaract.DataSource = dt;
+    //        RadGridRotaract.DataBind();
+    //    }
+    //}
+    //private void UpdateRotaractUnderDistt()
+    //{
+    //    int disttClubId = int.Parse(Request.QueryString["id"].ToString().Trim());
+    //    DBconnection obj = new DBconnection();
+    //    obj.SetCommandQry = "update rotaract_under_distclub_tbl set temp_id='1', distt_id='" + disttClubId + "' where temp_id='0'";
+
+    //    int exe = obj.ExecuteNonQuery();
+
+    //    if (exe > 0)
+    //    {
+    //    }
+    //}
+    //protected void DDLRotaractClub_SelectedIndexChanged(object sender, EventArgs e)
+    //{
+    //    try
+    //    {
+    //        int disttClubId = 0;
+    //        if (Request.QueryString["eid"] != null)
+    //        {
+    //            disttClubId = int.Parse(Request.QueryString["eid"].ToString().Trim());
+    //        }
+
+    //        DBconnection obj = new DBconnection();
+    //        obj.SetCommandSP = "z_AddRotaractUDistt";
+    //        obj.AddParam("@distt_id", disttClubId);
+    //        obj.AddParam("@rotaract_id", int.Parse(DDLRotaractClub.SelectedValue.ToString()));
+    //        obj.AddParam("@club_name", DDLRotaractClub.SelectedItem.Text.Trim());
+
+    //        int exe = obj.ExecuteNonQuery();
+
+    //        if (exe > 0)
+    //        {
+    //            //BindGrid();
+    //            BindRotaractGrid(disttClubId);
+    //        }
+    //    }
+    //    catch { }
+    //}
+    //protected void DDLRotaractClub_SelectedIndexChanged(object sender, EventArgs e)
+    //{
+    //    try
+    //    {
+    //        int disttClubId = 0;
+    //        if (Request.QueryString["did"] != null)
+    //        {
+    //            disttClubId = int.Parse(Request.QueryString["pid"].ToString().Trim());
+    //        }
+
+    //        DBconnection obj = new DBconnection();
+    //        obj.SetCommandSP = "z_AddRotaractUDistt";
+    //        obj.AddParam("@distt_id", disttClubId);
+    //        obj.AddParam("@rotaract_id", int.Parse(DDLRotaractClub.SelectedValue.ToString()));
+    //        obj.AddParam("@club_name", DDLRotaractClub.SelectedItem.Text.Trim());
+
+    //        int exe = obj.ExecuteNonQuery();
+
+    //        if (exe > 0)
+    //        {
+    //            BindGrid();
+    //        }
+    //    }
+    //    catch { }
+    //}
+
+
+
+    protected void DDLClubName_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            int id = int.Parse(DDLClubName.SelectedValue.ToString());
+            Session["did"] = id;
+            GetClubDetails(id);
+        }
+        catch { }
+    }
+    private void GetClubDetails(int id)
+    {
+        clear();
+
+        DBconnection obj = new DBconnection();
+        obj.SetCommandSP = "z_GetDistrictClubDetails";
+        obj.AddParam("@id", id);
+        DataTable dt = new DataTable();
+        dt = obj.ExecuteTable();
+        if (dt.Rows.Count > 0)
+        {
+            Session["distClubid"] = id.ToString();
+            lblClubNo.Text = dt.Rows[0]["club_No"].ToString();
+
+            try
+            {
+                string[] cdt = dt.Rows[0]["charter_date"].ToString().Split('/');
+                lblCharterDate.Text = cdt[0] + " " + cdt[1] + ", " + cdt[2];
+            }
+            catch { }
+
+            lblMeetingDay.Text = dt.Rows[0]["meet_days"].ToString();
+            lblMeetingTime.Text = dt.Rows[0]["time"].ToString();
+            lblVenue.Text = dt.Rows[0]["venue1"].ToString() + " " + dt.Rows[0]["venue2"].ToString() + " " + dt.Rows[0]["city"].ToString();
+            string gps = dt.Rows[0]["gps_latitude"].ToString();
+            if (gps != "")
+            {
+                lblGPS.Text = "Latitude : " + dt.Rows[0]["gps_latitude"].ToString() + "    " + "Longitude : " + dt.Rows[0]["gps_longitude"].ToString();
+            }
+            else
+            {
+                lblGPS.Text = "";
+            }
+
+            txtPHF.Text = dt.Rows[0]["phf"].ToString();
+            txtTRFSM.Text = dt.Rows[0]["trfsm"].ToString();
+            txtMD.Text = dt.Rows[0]["md"].ToString();
+            txtPHSM.Text = dt.Rows[0]["phsm"].ToString();
+
+            DDLMem1.SelectedItem.Text = dt.Rows[0]["ds"].ToString();
+            DDLMem2.SelectedItem.Text = dt.Rows[0]["gc"].ToString();
+            DDLMem3.SelectedItem.Text = dt.Rows[0]["ag"].ToString();
+
+            try
+            {
+                ocvDate.DbSelectedDate = DateTime.Parse(dt.Rows[0]["ocv_date"].ToString());
+            }
+            catch { }
+
+            string Idate = dt.Rows[0]["installation_date"].ToString();
+            installationDate.DbSelectedDate = DateTime.Parse(dt.Rows[0]["installation_date"].ToString());
+            string[] Itime = dt.Rows[0]["installation_time"].ToString().Split(':');
+            if (Itime.Length > 1)
+            {
+                DDLTimeH.SelectedValue = Itime[0].ToString();
+                DDLTimeM.SelectedValue = Itime[1].ToString();
+                DDLTime.SelectedValue = Itime[2].ToString();
+            }
+
+
+            txtChiefGuest.Text = dt.Rows[0]["chief_guest"].ToString();
+            txtVenue.Text = dt.Rows[0]["installation_venue"].ToString();
+            string clubTrf = dt.Rows[0]["club_trf"].ToString();
+            if (clubTrf == "100% PHFSM Club")
+                chkTRFStatus.SelectedIndex = 0;
+            if (clubTrf == "100% PHF Club")
+                chkTRFStatus.SelectedIndex = 1;
+            if (clubTrf == "100% EREY Club")
+                chkTRFStatus.SelectedIndex = 2;
+
+
+            // Iner Wheel
+            BindGridIW(id);
+            // RCC
+            BindGridRCC(id);
+            // Sr. Citizen
+            BindGridSrCtn(id);
+
+            BindGridInteract(id);
+
+            BindGridRotaract(id);
+
+            BindGridBEN(id);
+
+        }
+    }
+
+    #region Inner Wheel
+    protected void btnAddIW_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            int disttClubId = int.Parse(DDLClubName.SelectedValue.ToString());
+
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Add_DistClub_IW";
+            obj.AddParam("@dist_id", disttClubId);
+            obj.AddParam("@club_name", txtIwClubname.Text.Trim());
+
+            int exe = obj.ExecuteNonQuery();
+
+            if (exe > 0)
+            {
+                txtIwClubname.Text = "";
+                BindGridIW(disttClubId);
+            }
+        }
+        catch { }
+    }
+    private void BindGridIW(int distId)
+    {
+        DBconnection obj = new DBconnection();
+        //obj.SetCommandQry = "select * FROM distclub_IW_tbl where temp_id='0' order by iw_id desc";
+        //obj.SetCommandQry = "select * FROM distclub_IW_tbl order by iw_id desc";
+        obj.SetCommandQry = "select * from distclub_IW_tbl where dist_id='" + distId + "' order by club_name asc";
+        DataTable dt = new DataTable();
+        dt = obj.ExecuteTable();
+        if (dt.Rows.Count > 0)
+        {
+            trIW.Visible = true;
+            rbtnIW.SelectedIndex = 0;
+            RadGridIW.DataSource = dt;
+            RadGridIW.DataBind();
+        }
+        else
+        {
+        }
+    }
+
+    protected void rbtnIW_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (rbtnIW.SelectedValue == "Yes")
+        {
+            trIW.Visible = true;
+        }
+        else
+        {
+            trIW.Visible = false;
+        }
+    }
+
+    protected void RadGridIW_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
+    {
+        if (e.CommandName == "Delete")
+        {
+            string i = e.CommandArgument.ToString();
+            int id = int.Parse(i.ToString());
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Delete_DistClub_IW";
+            obj.AddParam("@iw_id", id);
+            if (obj.ExecuteNonQuery() > 0)
+            {
+                //RadGridIW.DataBind(); 
+                trIW.Visible = true;
+                BindGridIW(int.Parse(Session["did"].ToString()));
+            }
+        }
+    }
+    #endregion
+    #region RCC
+
+    protected void btnAddRCC_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            int disttClubId = int.Parse(DDLClubName.SelectedValue.ToString());
+
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Add_DistClub_RCC";
+            obj.AddParam("@dist_id", disttClubId);
+            obj.AddParam("@name", txtRCCname.Text.Trim());
+
+            int exe = obj.ExecuteNonQuery();
+
+            if (exe > 0)
+            {
+                BindGridRCC(disttClubId);
+            }
+        }
+        catch { }
+    }
+    private void BindGridRCC(int distId)
+    {
+        DBconnection obj = new DBconnection();
+        obj.SetCommandQry = "select * FROM distclub_RCC_tbl where dist_id='" + distId + "' order by rcc_id desc";
+        DataTable dt = new DataTable();
+        dt = obj.ExecuteTable();
+        if (dt.Rows.Count > 0)
+        {
+            trRCC.Visible = true;
+            rbtnRCC.SelectedIndex = 0;
+            RadGridRCC.DataSource = dt;
+            RadGridRCC.DataBind();
+        }
+        else
+        {
+        }
+    }
+
+    protected void rbtnRCC_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (rbtnRCC.SelectedValue == "Yes")
+        {
+            trRCC.Visible = true;
+        }
+        else
+        {
+            trRCC.Visible = false;
+        }
+    }
+    protected void RadGridRCC_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
+    {
+        if (e.CommandName == "Delete")
+        {
+            string i = e.CommandArgument.ToString();
+            int id = int.Parse(i.ToString());
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Delete_DistClub_RCC";
+            obj.AddParam("@rcc_id", id);
+            if (obj.ExecuteNonQuery() > 0)
+            {
+                BindGridRCC(int.Parse(Session["did"].ToString()));
+            }
+        }
+    }
+    #endregion
+    #region Sr. Citizen
+
+    protected void btnSrCiAdd_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            int disttClubId = int.Parse(DDLClubName.SelectedValue.ToString());
+
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Add_DistClub_SrCtn";
+            obj.AddParam("@dist_id", disttClubId);
+            obj.AddParam("@club_name", txtSrCitiznName.Text.Trim());
+
+            int exe = obj.ExecuteNonQuery();
+
+            if (exe > 0)
+            {
+                BindGridSrCtn(disttClubId);
+            }
+        }
+        catch { }
+    }
+    private void BindGridSrCtn(int distId)
+    {
+        DBconnection obj = new DBconnection();
+        obj.SetCommandQry = "select * FROM distclub_SrCtn_tbl where dist_id='" + distId + "' order by ctn_id desc";
+        DataTable dt = new DataTable();
+        dt = obj.ExecuteTable();
+        if (dt.Rows.Count > 0)
+        {
+            trSrCi.Visible = true;
+            rbtnSrCi.SelectedIndex = 0;
+            RadGridSrCtn.DataSource = dt;
+            RadGridSrCtn.DataBind();
+        }
+        else
+        {
+        }
+    }
+    protected void rbtnSrCi_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (rbtnSrCi.SelectedValue == "Yes")
+        {
+            trSrCi.Visible = true;
+        }
+        else
+        {
+            trSrCi.Visible = false;
+        }
+
+    }
+    protected void RadGridSrCtn_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
+    {
+        if (e.CommandName == "Delete")
+        {
+            string i = e.CommandArgument.ToString();
+            int id = int.Parse(i.ToString());
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Delete_DistClub_SrCtn";
+            obj.AddParam("@ctn_id", id);
+            if (obj.ExecuteNonQuery() > 0)
+            {
+                BindGridSrCtn(int.Parse(Session["did"].ToString()));
+            }
+        }
+    }
+    #endregion
+    #region Interact
+
+    protected void btnAddInteract_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            int disttClubId = int.Parse(DDLClubName.SelectedValue.ToString());
+
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Add_DistClub_Interact";
+            obj.AddParam("@dist_id", disttClubId);
+            obj.AddParam("@interact_id", int.Parse(DDLIntractClub.SelectedValue.ToString()));
+            obj.AddParam("@club_name", DDLIntractClub.SelectedItem.Text.Trim());
+
+            int exe = obj.ExecuteNonQuery();
+
+            if (exe > 0)
+            {
+                BindGridInteract(disttClubId);
+            }
+        }
+        catch { }
+    }
+
+    private void BindGridInteract(int distId)
+    {
+        DBconnection obj = new DBconnection();
+        //obj.SetCommandQry = "select * FROM distclub_interact_tbl where temp_id='0' order by id desc";
+        obj.SetCommandQry = "select * FROM distclub_interact_tbl where dist_id='" + distId + "' order by id desc";
+        DataTable dt = new DataTable();
+        dt = obj.ExecuteTable();
+        if (dt.Rows.Count > 0)
+        {
+            trIntr.Visible = true;
+            rbtnInteract.SelectedIndex = 0;
+            RadGridInteract.DataSource = dt;
+            RadGridInteract.DataBind();
+        }
+        else
+        {
+        }
+    }
+    protected void rbtnInteract_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (rbtnInteract.SelectedValue == "Yes")
+        {
+            trIntr.Visible = true;
+        }
+        else
+        {
+            trIntr.Visible = false;
+        }
+
+    }
+
+    protected void RadGridInteract_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
+    {
+        if (e.CommandName == "Delete")
+        {
+            string i = e.CommandArgument.ToString();
+            int id = int.Parse(i.ToString());
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Delete_DistClub_Interact";
+            obj.AddParam("@id", id);
+            if (obj.ExecuteNonQuery() > 0)
+            {
+                BindGridInteract(int.Parse(Session["did"].ToString()));
+            }
+        }
+    }
+    #endregion
+    #region Rotaract
+
+    protected void btnAddRotarct_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            int disttClubId = int.Parse(DDLClubName.SelectedValue.ToString());
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Add_DistClub_Rotaract";
+            obj.AddParam("@dist_id", disttClubId);
+            obj.AddParam("@rotaract_id", int.Parse(DDLRotaractClub.SelectedValue.ToString()));
+            obj.AddParam("@club_name", DDLRotaractClub.SelectedItem.Text.Trim());
+
+            int exe = obj.ExecuteNonQuery();
+
+            if (exe > 0)
+            {
+                BindGridRotaract(disttClubId);
+            }
+        }
+        catch { }
+    }
+
+    private void BindGridRotaract(int distId)
+    {
+        DBconnection obj = new DBconnection();
+       //obj.SetCommandQry = "select * FROM distclub_rotaract_tbl where temp_id='0' order by id desc";
+         obj.SetCommandQry = "select * FROM distclub_rotaract_tbl where dist_id='" + distId + "' order by id desc";
+        
+        DataTable dt = new DataTable();
+        dt = obj.ExecuteTable();
+        if (dt.Rows.Count > 0)
+        {
+            trRtr.Visible = true;
+            rbtnRotaract.SelectedIndex = 0;
+            RadGridRotaract.DataSource = dt;
+            RadGridRotaract.DataBind();
+        }
+        else
+        {
+        }
+    }
+    protected void rbtnRotaract_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (rbtnRotaract.SelectedValue == "Yes")
+        {
+            trRtr.Visible = true;
+        }
+        else
+        {
+            trRtr.Visible = false;
+        }
+    }
+
+    protected void RadGridRotaract_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
+    {
+      
+        if (e.CommandName == "Delete")
+        {
+            
+            string i = e.CommandArgument.ToString();
+            int id = int.Parse(i.ToString());
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Delete_DistClub_Rotaract";
+            obj.AddParam("@id", id);
+            if (obj.ExecuteNonQuery() > 0)
+            {
+                BindGridRotaract(int.Parse(Session["did"].ToString()));
+            }
+        }
+    }
+    #endregion
+    #region BEN
+
+    protected void btnAddBen_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            int disttClubId = int.Parse(DDLClubName.SelectedValue.ToString());
+
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Add_DistClub_BEN";
+            obj.AddParam("@dist_id", disttClubId);
+            obj.AddParam("@name", DDLMemBen.SelectedItem.Text.Trim());
+
+            int exe = obj.ExecuteNonQuery();
+
+            if (exe > 0)
+            {
+                BindGridBEN(disttClubId);
+            }
+        }
+        catch { }
+    }
+    private void BindGridBEN(int distId)
+    {
+        DBconnection obj = new DBconnection();
+        //   obj.SetCommandQry = "select * FROM distclub_BEN_tbl where temp_id='0' order by ben_id desc";
+        obj.SetCommandQry = "select * FROM distclub_BEN_tbl where dist_id='" + distId + "' order by ben_id desc";
+        DataTable dt = new DataTable();
+        dt = obj.ExecuteTable();
+        if (dt.Rows.Count > 0)
+        {
+            trBEN.Visible = true;
+            rbtnBEN.SelectedIndex = 0;
+            RadGridBEN.DataSource = dt;
+            RadGridBEN.DataBind();
+        }
+        else
+        {
+        }
+    }
+    protected void rbtnBEN_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (rbtnBEN.SelectedValue == "Yes")
+        {
+            trBEN.Visible = true;
+        }
+        else
+        {
+            trBEN.Visible = false;
+        }
+    }
+    protected void RadGridBEN_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
+    {
+        if (e.CommandName == "Delete")
+        {
+            string i = e.CommandArgument.ToString();
+            int id = int.Parse(i.ToString());
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_Delete_DistClub_BEN";
+            obj.AddParam("@ben_id", id);
+            if (obj.ExecuteNonQuery() > 0)
+            {
+                BindGridBEN(int.Parse(Session["did"].ToString()));
+            }
+        }
+    }
+    #endregion
+
+
+    private void BindTime()
+    {
+        string s = "";
+        for (int i = 1; i <= 12; i++)
+        {
+            if (i <= 9)
+            {
+                s = "0" + i;
+            }
+            else
+            {
+                s = i.ToString();
+            }
+            DDLTimeH.Items.Add(s.ToString());
+        }
+        DDLTimeH.Items.Insert(0, "HH");
+        DDLTimeH.Items.Insert(1, "00");
+        for (int i = 5; i <= 55; i = i + 5)
+        {
+            if (i <= 9)
+            {
+                s = "0" + i;
+            }
+            else
+            {
+                s = i.ToString();
+            }
+            DDLTimeM.Items.Add(s.ToString());
+        }
+        DDLTimeM.Items.Insert(0, "MM");
+        DDLTimeM.Items.Insert(1, "00");
+    }
+    protected void btncancel_Click(object sender, EventArgs e)
+    {
+        clear();
+    }
+
+    private void clear()
+    {
+        txtIwClubname.Text = "";
+        txtMD.Text = "";
+        txtPHF.Text = "";
+        txtPHF.Text = "";
+        txtPHSM.Text = "";
+        txtRCCname.Text = "";
+        txtSrCitiznName.Text = "";
+        txtTRFSM.Text = "";
+
+       // DDLClubName.ClearSelection();
+        DDLIntractClub.ClearSelection();
+        DDLMem1.ClearSelection();        
+        DDLMem2.ClearSelection();
+        DDLMem3.ClearSelection();
+        DDLMemBen.ClearSelection();
+        DDLRotaractClub.ClearSelection();
+
+        rbtnBEN.SelectedIndex = 1;
+        trBEN.Visible = false;
+
+        rbtnInteract.SelectedIndex = 1;
+        trIntr.Visible = false;
+
+        rbtnIW.SelectedIndex = 1;
+        trIW.Visible = false;
+
+        rbtnRCC.SelectedIndex = 1;
+        trRCC.Visible = false;
+
+        rbtnRotaract.SelectedIndex = 1;
+        trRtr.Visible = false;
+
+        rbtnSrCi.SelectedIndex = 1;
+        trSrCi.Visible = false;
+
+        lblCharterDate.Text = "";
+        lblClubNo.Text = "";
+        lblGPS.Text = "";
+        lblMeetingDay.Text = "";
+        lblMeetingTime.Text = "";
+        lblVenue.Text = "";
+
+        installationDate.Clear();
+        DDLTimeH.SelectedIndex = 0;
+        DDLTimeM.SelectedIndex = 0;
+        DDLTime.SelectedIndex = 0;
+        txtChiefGuest.Text = "";
+        txtIwClubname.Text = "";
+        txtVenue.Text = "";
+        chkTRFStatus.ClearSelection();
+
+
+    }
+    protected void RadGridBEN_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
+    {
+
+    }
+}
+

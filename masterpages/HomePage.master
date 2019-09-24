@@ -1,0 +1,511 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="HomePage.master.cs" Inherits="masterpages_HomePage" %>
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title>RI District 3141</title>
+<meta name="description" content="Rotary is an organisation of business and professional persons united worldwide who provide humanitarian service, encourage high ethical standards in all vocations and 
+help build goodwill and peace in the world. Rotary International District 3141 came into existence on 1st July, 2016 after bifurcation of Rotary International District 3140 on 30th June, 2016. Rotary 
+International District 3141 comprises of the Mumbai Revenue district and has 80 Rotary Clubs and 4,850 members. Rotary International District 3141 also has 96 Rotaract clubs, 215 Interact Clubs and 81 
+Rotary Community Corps. Some of  the prominent Rotary Clubs are Rotary Club of Bombay, Rotary Club of North, Rotary Club of Bombay Pier, Rotary Club of Mumbai Queens Necklace, Rotary Club of Bombay 
+Peninsula">
+
+<meta name="keywords" content="Rotary International District 3141, Rotary Clubs, RI District 3141, Rotary International District 3140, RI District 3140, RID 3140, RI The Rotary Foundation, TRF, The Rotary 
+Foundation Centennial, Clubs In Mumbai, Clubs in India, Rotary Clubs">
+
+<meta name="Classification" content="Rotary International District 3141, Rotary Club, RI District 3141, Rotary Clubs In Mumbai,  Rotary Clubs in India, Clubs In Mumbai Clubs in India, Club, Rotary" /> 
+<meta name="robots" content="index, follow">
+<meta name="category" content="Business & Economy">
+<meta name="copyright" content="Rotary International District 3141">
+<meta name="language" content="EN">
+<meta name="author" content="Goradia Infotech">
+<meta name="creationdate" content="01 August 2016">
+<meta name="distribution" content="global">
+<meta name="rating" content="general">
+
+
+
+    <!-- This site is optimized with the Yoast SEO plugin v3.0.7 - -->
+
+
+ <meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Rotary WinS in India" />
+<meta property="og:url" content="http://rotaryindiawashinschools.com/" />
+<meta property="og:site_name" content="Rotary WinS in India" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Rotary WinS in India"/>
+<script type='application/ld+json'>{"@context":"http:\/\/schema.org","@type":"WebSite","url":"http:\/\/rotaryindiawashinschools.com\/","name":"Rotary WinS in India","potentialAction":{"@type":"SearchAction","target":"http:\/\/rotaryindiawashinschools.com\/?s={search_term_string}","query-input":"required name=search_term_string"}}</script>
+
+
+<!-- / Yoast SEO plugin. -->
+
+
+
+
+
+
+
+
+
+    <link href="../css/global.css" rel="stylesheet" type="text/css" />
+    <link href="../css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="../css/menu.css" rel="stylesheet" type="text/css" />
+    <link href="../css/accordian_tab.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="../css/main.css" />
+
+
+    <script>
+        function do_special(file) {
+            window.open("./" + file, "Report", "scrollbars=none,menubar=no,top=20,left=70,width=1000,height=800");
+        }
+    </script>
+
+    <script type="text/JavaScript">
+<!--
+    function MM_openBrWindow(theURL, winName, features) { //v2.0
+        window.open(theURL, winName, features);
+    }
+    //-->
+    </script>
+
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> 
+    <script type="text/javascript" src="images_files/ticker00.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#fade').list_ticker({
+                speed: 2000,
+                effect: 'fade'
+            });
+            $('#slide').list_ticker({
+                speed: 2000,
+                effect: 'slide'
+            });
+        })
+    </script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-96021622-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body onload="goforit()">
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+        <div class="wrapper">
+
+            <header>
+                <section class="top_header_bg">
+                    <div class="content_header">
+                        <div class="top_header_left">
+                            <img src="images/flag.gif" width="26" height="19" style="margin-top: 2px;" alt="" />
+                            <span class="time-date">
+                                <script type="text/javascript">
+
+                                    /*
+                                    Live Date Script- 
+                                    © Dynamic Drive (www.dynamicdrive.com)
+                                    For full source code, installation instructions, 100's more DHTML scripts, and Terms Of Use,
+                                    visit http://www.dynamicdrive.com
+                                    */
+
+
+                                    var dayarray = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+                                    var montharray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+
+                                    function getthedate() {
+                                        var mydate = new Date()
+                                        var year = mydate.getYear()
+                                        if (year < 1000)
+                                            year += 1900
+                                        var day = mydate.getDay()
+                                        var month = mydate.getMonth()
+                                        var daym = mydate.getDate()
+                                        if (daym < 10)
+                                            daym = "0" + daym
+                                        var hours = mydate.getHours()
+                                        var minutes = mydate.getMinutes()
+                                        var seconds = mydate.getSeconds()
+                                        var dn = "AM"
+                                        if (hours >= 12)
+                                            dn = "PM"
+                                        if (hours > 12) {
+                                            hours = hours - 12
+                                        }
+                                        if (hours == 0)
+                                            hours = 12
+                                        if (minutes <= 9)
+                                            minutes = "0" + minutes
+                                        if (seconds <= 9)
+                                            seconds = "0" + seconds
+                                        //change font size here
+                                        var cdate = "" + dayarray[day] + ", " + montharray[month] + " " + daym + ", " + year + " and it is " + hours + ":" + minutes + ":" + seconds + " " + dn + ""
+                                        if (document.all)
+                                            document.all.clock.innerHTML = cdate
+                                        else if (document.getElementById)
+                                            document.getElementById("clock").innerHTML = cdate
+                                        else
+                                            document.write(cdate)
+                                    }
+                                    if (!document.all && !document.getElementById)
+                                        getthedate()
+                                    function goforit() {
+                                        if (document.all || document.getElementById)
+                                            setInterval("getthedate()", 1000)
+                                    }
+
+                                </script>
+                                <span id="clock" class="time-date"></span>
+                            </span>
+                        </div>
+                        <div class="top_header_center">
+
+                            <div class="mem_count_divt">
+                                <div class="gray_count_divt">
+                                    <asp:Label ID="lblTotalMembers" runat="server"></asp:Label>
+                                </div>
+                                Membership
+                            </div>
+
+                            <div class="trf_count_divt">
+                                <div class="gray_count_divt">
+                                    <asp:Label ID="lblTrfAmt" runat="server"></asp:Label>
+                                </div>
+                                <div class="trf_doller_blue">$</div>
+                                TRF Donation
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="top_header_right">
+                            <a class="dc_button" href="district_clubs.aspx">District Clubs </a>
+
+                            <div class="social">
+                                <ul>
+                                    <li><a href="default.aspx"><i class="fa fa-home"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                                    <li><a href="sitemap.aspx"><i class="fa fa-sitemap"></i></a></li>
+                                    <div class="clearfix">
+                                    </div>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </section>
+                <div class="content_header">
+                    <div class="header_topleft">
+                        <a href="default.aspx">
+                            <img src="images/logo.jpg" alt="" /></a>
+                    </div>
+
+                    <div class="header_topright">
+                        <div class="htrsearch">
+                            <div class="search_login_div">
+                                <div align="right" style="height: 29px;"><a href='members_login.aspx?id=Profile' class="login_button"><i class="fa fa-user"></i> &nbsp;Login</a></div>
+
+                                <div class="search">
+                                    <div>
+                                        <input type="search" value="search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'search';}" required>
+                                        <input type="submit" value=" ">
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="peak_logo">
+                                <img src="images/peak_logo.jpg" alt="" />
+                            </div>
+
+
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+            </header>
+            <nav>
+                <div class="menu" >
+                    <div id='cssmenu' class="fade_anim " >
+                        <ul class="hack">
+                            <li><a href="#">District 3141 </a>
+                               
+                                 <ul> 
+                                     
+                                    <li><a href="../about_district_3141.aspx"><span>About District 3141</span></a></li>
+                                    <li><a href="../district_governor.aspx"><span>District Governors</span></a></li>
+                                    <li><a href="../installiation_schedule.aspx"><span>Installation Schedule</span></a></li>
+                                    <li><a href="../ocv_schedule.aspx"><span>OCV Schedule</span></a></li>
+                                    <li><a href="../dg_citation.aspx"><span>DG's Citation Criteria</span></a></li>
+                                    <li><a href="../rotary_centres.aspx"><span>Rotary Centres</span></a></li> 
+
+                                 </ul>
+
+
+                            </li>
+                            <li><a href="#">Team 3141 </a>
+                                <ul>
+                                    <li><a href="../AdministrativeTeam.aspx"><span>Administrative Team</span></a></li>
+                                    <li><a href="../DistrictSecretaries.aspx"><span>District Secretaries</span></a></li>
+                                    <li><a href="../AssistantGovernors.aspx"><span>Assistant Governors</span></a></li>
+                                    <li><a href="../AssistantTrainers.aspx"><span>Assistant Trainers</span></a></li>
+                                    <li><a href="../GovernorsSpecialAides.aspx"><span>Governor's Special Aides</span></a></li>
+                                    <li><a href="../SergeantAtArms.aspx"><span>Sergeant At Arms</span></a></li>
+                                    <li><a href="../GovernorsPublications.aspx"><span>Governor's Publications</span></a></li>
+
+
+                                </ul>
+                            </li>
+
+
+
+                            <li><a href="#">Clubs 3141</a>
+                                <ul>
+                                    <li><a href="../district_clubs.aspx"><span>District Clubs</span></a></li>
+                                    <li><a href="../club_presidents.aspx"><span>Club Presidents</span></a></li>
+                                    <li><a href="../club_secretaries.aspx"><span>Club Secretaries</span></a></li>
+                                    <li><a href="../clubs_3140_club_leadership_plan.aspx"><span>Club Leadership Plan</span></a></li>
+                                    <li><a href="../clubs_3140_protocol_decorum.aspx"><span>Protocol & Decorum</span></a></li>
+                                    <li><a href="../speakers_directory.aspx"><span>Speakers Directory</span></a></li>
+
+                                </ul>
+                            </li>
+
+
+                            <li><a href="#">Rotary International </a>
+                                <ul>
+                                    <li><a href="../ri_president.aspx"><span>RI Presidents</span></a></li>
+                                    <li><a href="../ri_themes_2015_16.aspx"><span>RI Theme - 2015-16</span></a></li>
+                                    <li><a href="../our_leaders_ri.aspx"><span>Our Leaders in RI</span></a></li>
+
+                                    <li><a href="../ri_the_guiding_principles.aspx"><span>The Guiding Principles</span></a></li>
+                                    <li><a href="../ri_code_of_conduct.aspx"><span>Rotary Code of Conduct</span></a></li>
+
+                                    <li><a href="../ri_rotary_abbreviations.aspx"><span>Rotary Abbreviations</span></a></li>
+                                    <li><a href="../ri_rotary_glossary.aspx"><span>Rotary Glossary</span></a></li>
+                                    <li><a href="../ri_rotary_mobile_apps.aspx"><span>Rotary Mobile Apps</span></a></li>
+
+                                    <li><a href="../ri_special_designated_months.aspx"><span>Special Designated Months</span></a></li>
+                                    <li><a href="../ri_important_deadlines.aspx"><span>Important Deadlines</span></a></li>
+                                    <li><a href="../ri_story_of_the_4Way_test.aspx"><span>Story of The 4-Way Test</span></a></li>
+
+
+                                </ul>
+
+                            </li>
+                            <li><a href="#">TRF</a>
+
+                                <ul>
+                                    <li><a href="../TRF_trustee_chair_2015_16.aspx">TRF Trustee Chair 2015-16</a></li>
+                                    <li><a href="../TRF_trustee_2013_17.aspx">TRF Trustee 2013-17</a></li>
+                                    <li><a href="../TRF_trustee_2014_18.aspx">TRF Trustee 2014-18</a></li>
+                                    <li><a href="#">Arch Klumph Society Members</a></li>
+                                </ul>
+
+
+                            </li>
+                            <li><a href="../projects.aspx">Projects</a></li>
+
+                            <li><a href="#">Public Relations </a>
+                                <ul>
+                                    <li><a href="../governor_monthly_letter.aspx">Governor's Monthly Letter</a></li>
+                                    <li><a href="../under_construction.aspx">Press & Media Coverage</a></li>
+                                    <li><a href="../under_construction.aspx">Gallery</a></li>
+                                </ul>
+
+                            </li>
+
+
+                            <li><a href="../under_construction.aspx">Get Involved </a>
+                                <ul>
+                                    <li><a href="../join_rotary.aspx">Join Rotary</a></li>
+                                    <li><a href="../under_construction.aspx">Interact</a></li>
+                                    <li><a href="../under_construction.aspx">Rotaract</a></li>
+                                    <li><a href="../under_construction.aspx">Youth Exchange</a></li>
+                                    <li><a href="../under_construction.aspx">Ambassadorial Scholarships</a></li>
+                                    <li><a href="../under_construction.aspx">Peace Scholarships</a></li>
+                                    <li><a href="../under_construction.aspx">Group Study Exchange</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="../poll.aspx">Polls </a></li>
+                            <li><a href="../under_construction.aspx">Downloads</a>
+                                <ul>
+                                    <li><a href="../under_construction.aspx">General</a></li>
+                                    <li><a href="../under_construction.aspx">Club Leaders</a></li>
+                                    <li><a href="../under_construction.aspx">District Officers</a></li>
+                                    <li><a href="../under_construction.aspx">Manuals</a></li>
+                                    <li><a href="../under_construction.aspx">Logo & Graphics</a></li>
+                                    <li><a href="../videos.aspx">Videos</a></li>
+                                    <li><a href="../under_construction.aspx">Forms</a></li>
+                                    <li><a href="../under_construction.aspx">Important Photos</a></li>
+                                    <li><a href="../under_construction.aspx">District Directory</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="../events.aspx">Events</a></li>
+                            <li><a href="../under_construction.aspx">Registrations</a></li>
+                            <li><a href="../join_rotary.aspx">Join Rotary</a></li>
+                            <li><a href="../contact.aspx">Contact</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+
+            <section class="banner">
+                <div class="banner-slider">
+
+                    <ul class="banner-slider_nav"></ul>
+                    <div class="banner_slide">
+                        <div>
+                            <img class="banner_image" src="images/banner_img01.jpg" />
+                        </div>
+                    </div>
+                    <div class="banner_slide">
+                        <img class="banner_image" src="images/banner_img02.jpg" />
+                    </div>
+					
+					<div class="banner_slide">
+                        <img class="banner_image" src="images/banner_img05.jpg" />
+                    </div>
+					
+					
+				                    <div class="banner_slide">
+                        <img class="banner_image" src="images/banner_img03.jpg" />
+                    </div>	
+								        
+					
+					
+					
+				<div class="banner_slide">
+                        <img class="banner_image" src="images/banner_img04.jpg" />
+                    </div>
+					
+				 <div class="banner_slide">
+                        <img class="banner_image" src="images/banner_img06.jpg" />
+                    </div>
+						
+					
+
+                    <div class="cycle_arrow-wrapper">
+                        <a href="#" class="cycle_prev"></a>
+                        <a href="#" class="cycle_next"></a>
+                    </div>
+                </div>
+
+
+
+            </section>
+
+
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+            <br>
+        </div>
+        <footer>
+            <div class="footer_holder">
+
+                <a href="#">
+                    <div class="footer_left"></div>
+                </a>
+
+
+                <div class="footer_right">
+                    <a href="https://www.facebook.com/RotaryDistrict3141?ref=hl" title="facebook" class=""><i class="fa fa-facebook-square"></i></a>
+                    &nbsp; &nbsp;<a href="#"><i class="fa fa-youtube-square"></i></a>
+                </div>
+
+
+                <a href="contact.aspx" class="footer_text">Contact Us</a> |  <a href="terms_conditions.aspx" class="footer_text">Terms of Use</a> |  <a href="sitemap.aspx" class="footer_text">Sitemap</a><br />
+                <div class="footer_textdhy">Copyright © 2015 RI District 3141. All Rights Reserved. | Site Designed & Maintained By <a href="http://www.goradiainfotech.com/" target="_blank">Goradia Infotech</a>
+           </div> </div>
+        </footer>
+
+        <script src="js/jquery.stepcycle.js"></script>
+        <script>
+            $(document).ready(function (e) {
+                var banner = $('.banner-slider').stepCycle({
+                    transition: 'fade',
+                    childSelector: '.banner_slide',
+                    transitionTime: .75,
+                    navContainerSelector: '.banner-slider_nav',
+                    navDotClass: 'banner-slider_nav_item',
+                    navItemTemplate: '<li class="banner-slider_nav_item banner-slider_nav_item--is-selected"><a href="#">&bull;</a></li>',
+                    navSelectedClass: 'banner-slider_nav_item--is-selected'
+                });
+            })
+        </script>
+
+
+
+
+    </form>
+
+
+
+
+<script>
+$(function() {
+	var Accordion = function(el, multiple) {
+		this.el = el || {};
+		this.multiple = multiple || false;
+
+		// Variables privadas
+		var links = this.el.find('.link');
+		// Evento
+		links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+	}
+
+	Accordion.prototype.dropdown = function(e) {
+		var $el = e.data.el;
+			$this = $(this),
+			$next = $this.next();
+
+		$next.slideToggle();
+		$this.parent().toggleClass('open');
+
+		if (!e.data.multiple) {
+			$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+		};
+	}	
+
+	var accordion = new Accordion($('#accordion'), false);
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

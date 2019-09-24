@@ -1,0 +1,389 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterpages/AdminM.master" AutoEventWireup="true" CodeFile="Update_district_clubs_meet.aspx.cs" Inherits="admin_Update_district_clubs_meet" %>
+
+<%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <style type="text/css">
+    .style3
+    {
+            width: 212px;
+            text-align: right;
+        }
+    .style4
+    {
+        color: #FF0000;
+    }
+
+.RadGrid_Default
+{
+    border:1px solid #828282;
+    background:#fff;
+    color:#333;
+}
+
+.RadGrid_Default
+{
+    font:12px/16px "segoe ui",arial,sans-serif;
+}
+
+.RadGrid .rgMasterTable
+{
+    border-collapse:separate;
+}
+
+.RadGrid_Default .rgMasterTable
+{
+    font:12px/16px "segoe ui",arial,sans-serif;
+}
+
+.RadGrid .rgHeader
+{
+	cursor:default;
+}
+
+    .RadGrid .rgHeader
+{
+	padding-left:7px;
+	padding-right:7px;
+}
+
+.RadGrid .rgHeader
+{
+	padding-top:5px;
+	padding-bottom:4px;
+	text-align:left;
+	font-weight:normal;
+}
+
+.RadGrid_Default .rgHeader
+{
+	border:0;
+	border-bottom:1px solid #828282;
+	background:#eaeaea 0 -2300px repeat-x url('mvwres://Telerik.Web.UI, Version=2010.3.1109.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4/Telerik.Web.UI.Skins.Default.Grid.sprite.gif');
+}
+
+.RadGrid_Default .rgHeader
+{
+    color:#333;
+}
+
+        .style5
+        {
+            text-align: right;
+        }
+
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>--%>
+    
+    
+    <table style="width:100%;" border="0" class="txt" align="center" cellpadding="0" cellspacing="5" >
+         <tr>
+              
+               <td colspan="3" class="header_title">Update District 3140 Clubs Meet</td>
+            </tr>
+          
+    
+          
+            <tr>
+              <td valign="top" class="style3">&nbsp;</td>
+              <td width="20" valign="top">&nbsp;</td>     
+              <td  align="right" valign="top">
+                  <span class="style4">*</span> Denote Madatory Field.</td>
+            </tr>
+          
+    
+           <tr id="TRSpeaker" runat="server">
+              <td class="style3" ><div align="right"><span class="style4">* </span>Name of Club </div></td>
+              <td ><div align="center">:</div></td>
+              <td >
+                
+                  <div align="left">
+                      <asp:TextBox ID="txtClubName" runat="server" Width="450px" CssClass="txt1" 
+                          MaxLength="300">Rotary Club of </asp:TextBox>
+                      &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                          ControlToValidate="txtClubName" Display="Dynamic" ErrorMessage="Can't left blank" 
+                          ValidationGroup="Clubs"></asp:RequiredFieldValidator></div></td>
+            </tr>
+            
+             <tr id="TR11" runat="server">
+              <td class="style3" ><span class="style4">&nbsp;</span>R.I. Club No.</td>
+              <td class="style5" >:</td>
+              <td >
+                
+                  <div align="left">
+                     <asp:TextBox ID="txtClubNo" runat="server" Width="100px" CssClass="txt1" 
+                          MaxLength="8"></asp:TextBox>
+                          <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
+                    ControlToValidate="txtClubNo" Display="Dynamic" 
+                    ErrorMessage="R.I. Club No. should be numeric." ValidationExpression="^[-+]?\d*\.?\d*$" 
+                    ValidationGroup="Clubs"></asp:RegularExpressionValidator></div></td>
+            </tr>
+            
+            <tr>
+              <td class="style5" ><div align="right">Charter Date</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle"><div align="left">
+                  <asp:DropDownList ID="DDLDays" runat="server" CssClass="txt">
+                  </asp:DropDownList>
+                  &nbsp;<asp:DropDownList ID="DDLMonth" runat="server" CssClass="txt">
+                  </asp:DropDownList>
+                  &nbsp;<asp:DropDownList ID="DDLYear" runat="server" CssClass="txt">
+                  </asp:DropDownList>
+                  </div></td>
+            </tr>
+            
+              <tr>
+              <td class="style5" ><div align="right">PHF</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle">
+                  <asp:TextBox ID="txtPHF" runat="server" CssClass="txt1" MaxLength="3" 
+                      Width="60px"></asp:TextBox>
+                  </td>
+            </tr>
+            
+              <tr>
+              <td class="style5" ><div align="right">TRFSM</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle">
+                  <asp:TextBox ID="txtTRFSM" runat="server" CssClass="txt1" MaxLength="3" 
+                      Width="60px"></asp:TextBox>
+                  </td>
+            </tr>
+            
+              <tr>
+              <td class="style5" ><div align="right">MD</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle">
+                  <asp:TextBox ID="txtMD" runat="server" CssClass="txt1" MaxLength="3" 
+                      Width="60px"></asp:TextBox>
+                  </td>
+            </tr>
+            
+              <tr>
+              <td class="style5" ><div align="right">PHSM</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle">
+                  <asp:TextBox ID="txtPHSM" runat="server" CssClass="txt1" MaxLength="3" 
+                      Width="60px"></asp:TextBox>
+                  </td>
+            </tr>
+            
+              <tr>
+              <td class="style5" ><div align="right">No. of Members</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle">
+                  <asp:TextBox ID="txtNoOfMembers" runat="server" CssClass="txt1" MaxLength="3" 
+                      Width="60px"></asp:TextBox>
+                  </td>
+            </tr>
+            
+            <tr>
+              <td class="style5" ><div align="right">Interact Club</div></td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle">
+                  <asp:DropDownList ID="DDLIntractClub" runat="server">
+                  </asp:DropDownList>
+                  </td>
+            </tr>
+            
+            <tr>
+              <td class="style5" ></td>
+              <td  ></td>
+              <td align="left" valign="middle">
+                 </td>
+            </tr>
+            
+            <tr>
+              <td class="style5" >Rotaract Club</td>
+              <td class="style1" ><div align="center">:</div></td>
+              <td align="left" valign="middle">
+                  <asp:DropDownList ID="DDLRotaractClub" runat="server" 
+                      DataSourceID="DSRotarctClub" DataTextField="club_name"  
+                      AppendDataBoundItems="true" CssClass="txt1"
+                      DataValueField="rotaract_id" AutoPostBack="True" 
+                      onselectedindexchanged="DDLRotaractClub_SelectedIndexChanged">
+                      <asp:ListItem>Select</asp:ListItem>
+                  </asp:DropDownList>
+                  </td>
+            </tr>
+            
+            <tr>
+              <td class="style5" ></td>
+              <td ></td>
+              <td align="left" valign="middle">
+                     <telerik:RadGrid ID="RadGrid1" runat="server">
+                     </telerik:RadGrid>
+                 </td>
+            </tr>
+             <tr id="TR1" runat="server">
+              <td class="style3" ><div align="right"><span class="style4">* </span>Meeting Day</div></td>
+              <td ><div align="center">:</div></td>
+              <td >
+                
+                  <div align="left">
+                  <asp:DropDownList ID="DDLDay" runat="server" CssClass="txt">
+                <asp:ListItem>Day</asp:ListItem>
+                <asp:ListItem>Sunday</asp:ListItem>
+                <asp:ListItem>Monday</asp:ListItem>
+                <asp:ListItem>Tuesday</asp:ListItem>
+                <asp:ListItem>Wednesday</asp:ListItem>
+                <asp:ListItem>Thursday</asp:ListItem>
+                <asp:ListItem>Friday</asp:ListItem>
+                <asp:ListItem>Saturday</asp:ListItem>
+            </asp:DropDownList>
+                  </div>
+                  </td>
+            </tr>
+          
+            <tr>
+              <td valign="top" class="style3"><div align="right"><span class="style4">* </span>
+                  Meeting Time</div></td>
+              <td width="20" valign="top"><div align="center">:</div></td>     
+              <td height="35" width="600" align="left" valign="top">
+                  <asp:DropDownList ID="DDLTimeH" runat="server" CssClass="txt">
+                    </asp:DropDownList>
+                    - <asp:DropDownList ID="DDLTimeM" runat="server" CssClass="txt">
+                    </asp:DropDownList>
+                    - <asp:DropDownList ID="DDLTime2" runat="server" CssClass="txt">
+                        <asp:ListItem>AM</asp:ListItem>
+                        <asp:ListItem>PM</asp:ListItem>
+                    </asp:DropDownList>
+                                                                                            &nbsp;<asp:RequiredFieldValidator 
+                      ID="RequiredFieldValidator2" runat="server" ControlToValidate="DDLTimeH" 
+                      Display="Dynamic" ErrorMessage="Can't left blank" ValidationGroup="Clubs"></asp:RequiredFieldValidator>
+                  <asp:RequiredFieldValidator 
+                      ID="RequiredFieldValidator4" runat="server" ControlToValidate="DDLTimeM" 
+                      Display="Dynamic" ErrorMessage="Can't left blank" ValidationGroup="Clubs"></asp:RequiredFieldValidator>
+                  <asp:RequiredFieldValidator 
+                      ID="RequiredFieldValidator5" runat="server" ControlToValidate="DDLTime2" 
+                      Display="Dynamic" ErrorMessage="Can't left blank" ValidationGroup="Clubs"></asp:RequiredFieldValidator></td>
+            </tr>
+            
+            
+            
+            
+           
+
+                    
+           
+            <tr id="TRTopics" runat="server">
+              <td valign="top" class="style3"><span class="style4">* </span>Venue</td>
+              <td valign="top" class="style5">:</td>
+              <td valign="top"><div align="left">
+                      <asp:TextBox ID="txtVenue1" runat="server" Width="450px" CssClass="txt1"></asp:TextBox>
+                      &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                          ControlToValidate="txtVenue1" Display="Dynamic" ErrorMessage="Can't left blank" 
+                          ValidationGroup="Clubs"></asp:RequiredFieldValidator></div>
+              </td>
+            </tr>
+            
+            <tr id="TR2" runat="server">
+              <td valign="top" class="style3"></td>
+              <td valign="top" class="style5">&nbsp;</td>
+              <td valign="top"><div align="left">
+                      <asp:TextBox ID="txtVenue2" runat="server" Width="450px" CssClass="txt1"></asp:TextBox></div>
+              </td>
+            </tr>
+          
+            <tr id="TR3" runat="server">
+              <td valign="top" class="style3"></td>
+              <td valign="top" class="style5">&nbsp;</td>
+              <td valign="top"><div align="left">
+                      <asp:TextBox ID="txtVenue3" runat="server" Width="450px" CssClass="txt1"></asp:TextBox></div>
+              </td>
+            </tr>
+            
+              <tr id="TR4" runat="server">
+              <td valign="top" class="style3">City</td>
+              <td valign="top" class="style5">:</td>
+              <td valign="top"><div align="left">
+                      <asp:TextBox ID="txtCity" runat="server" Width="200px" CssClass="txt1"></asp:TextBox></div>
+              </td>
+            </tr>
+            
+              <tr id="TR5" runat="server">
+              <td valign="top" class="style3">Pin</td>
+              <td valign="top" class="style5">:</td>
+              <td valign="top"><div align="left">
+                      <asp:TextBox ID="txtPin" runat="server" Width="100px" CssClass="txt1" 
+                          MaxLength="8"></asp:TextBox>
+                          <asp:RegularExpressionValidator ID="REVPin" runat="server" 
+                    ControlToValidate="txtPin" Display="Dynamic" 
+                    ErrorMessage="Pin code should be numeric." ValidationExpression="^[-+]?\d*\.?\d*$" 
+                    ValidationGroup="Clubs"></asp:RegularExpressionValidator></div>
+              </td>
+            </tr>
+            
+              <tr id="TR6" runat="server">
+              <td valign="top" class="style3">State</td>
+              <td valign="top" class="style5">:</td>
+              <td valign="top"><div align="left">
+                      <asp:TextBox ID="txtState" runat="server" Width="200px" CssClass="txt1">Maharashtra</asp:TextBox></div>
+              </td>
+            </tr>
+            
+              <tr id="TR7" runat="server">
+              <td valign="top" class="style3">Country</td>
+              <td valign="top" class="style5">:</td>
+              <td valign="top"><div align="left">
+                      <asp:TextBox ID="txtCountry" runat="server" Width="200px" CssClass="txt1">India</asp:TextBox></div>
+              </td>
+            </tr>
+            
+            
+             <tr id="TR8" runat="server">
+              <td valign="top" class="style3">GPS Coordinates</td>
+              <td valign="top" class="style5">:</td>
+              <td valign="top"><div align="left">
+                      Latitude:<asp:TextBox ID="txtLatitude" runat="server" Width="100px" 
+                          CssClass="txt1"></asp:TextBox>
+                      Longitude:<asp:TextBox ID="txtLongitude" runat="server" Width="100px" 
+                          CssClass="txt1"></asp:TextBox></div>
+              </td>
+            </tr>
+            
+             <tr id="TR9" runat="server">
+              <td valign="top" class="style3">Upload Location Map</td>
+              <td valign="top" class="style5">:</td>
+              <td valign="top"><div align="left">
+                     <asp:FileUpload ID="FileUpload1" runat="server" />
+                     </div>
+              </td>
+            </tr>
+            
+              <tr id="TR10" runat="server">
+              <td valign="top" class="style3">&nbsp;</td>
+              <td valign="top" class="style5">&nbsp;</td>
+              <td valign="top"><div align="left" style="color:Maroon; border-color:#808080;">Image size should not be greater than 300 KB.</div>
+              </td>
+            </tr>
+            
+          
+            
+             
+            <tr>
+              <td class="style3" ></td>
+              <td></td>
+              <td><div align="left">
+                  <asp:Button ID="btnSubmit" runat="server" TabIndex="63" Text="Update" 
+                      CssClass="btn" 
+                      ValidationGroup="Clubs" onclick="btnSubmit_Click"  />
+                  &nbsp;<asp:Button ID="btncancel" runat="server" TabIndex="64" Text="Cancel" 
+                      CssClass="btn" CausesValidation="False" onclick="btncancel_Click"/>
+                  <asp:SqlDataSource ID="DSRotarctClub" runat="server" 
+                      ConnectionString="<%$ ConnectionStrings:ConnString %>" 
+                      SelectCommand="SELECT * FROM [rotaract_club_tbl] order by club_name">
+                  </asp:SqlDataSource>
+                  </div></td>
+            </tr>
+            
+           
+          </table>
+
+<%--</ContentTemplate>
+    </asp:UpdatePanel>--%>
+</asp:Content>
+

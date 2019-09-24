@@ -1,0 +1,131 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterpages/AdminM.master" AutoEventWireup="true" CodeFile="upload_ocv.aspx.cs" Inherits="admin_upload_ocv" %>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <center style="height:603px;">
+  <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+    <ContentTemplate>
+    <table style="width:100%;" border="0" class="txt" align="center" cellpadding="0" cellspacing="5" >
+         
+            <tr>              
+               <td class="header_title" colspan="2">Upload OCV</td>
+            </tr>
+         
+            <tr >
+                <td style="border:solid thin; border-color:Gray; color:Red; padding:0 5px 0 5px;" 
+                    colspan="2">                
+                    You can upload the OCV Report Book in either Pdf or MS Word Format. ONly files 
+                    with extention .pdf, .doc and .docx will be permitted to be uploaded.<br /> 
+                    Please Note : The Maximum file size permitted is 30 MB.<br />                    
+                </td>               
+            </tr>
+
+            
+            <tr>
+                <td align="center" class="style3" valign="top" colspan="2"><span style="border:solid thin; border-color:Gray; color:Red; padding:0 5px 0 5px;" >( Please name your document as Clubname_OCVbook. i.e. 
+                        RCof_Bombay_Pier_OCVbook.pdf )</span>
+                        <br />
+                    <asp:SqlDataSource ID="DSDistClubNo" runat="server" 
+                        ConnectionString="<%$ ConnectionStrings:ConnString %>" 
+                        SelectCommand="SELECT SUBSTRING(club_name,16,100) as Club_name,id from [DistrictClubsMeets_tbl] order by club_name asc">
+                    </asp:SqlDataSource>
+                    <br /> <br /><br /></td>
+            </tr>
+
+            <tr>
+                <td align="right" valign="top" width="126" >
+                    Select Club Name :
+                    </td>
+                <td align="left" valign="top" width="500px">
+                    <asp:DropDownList ID="DDLClubName" runat="server" AppendDataBoundItems="true" 
+                        CssClass="txt" DataSourceID="DSDistClubNo" DataTextField="club_name" 
+                        DataValueField="id">
+                        <asp:ListItem Value="Select" Text="Select" >Select</asp:ListItem>
+                    </asp:DropDownList>
+                </td>
+            </tr>
+         
+            <tr>
+              <td valign="top" class="style3" align="left" colspan="2" width="880px">
+               
+              
+              
+               <eo:ajaxuploader ID="AJAXUploader1" runat="server" AutoPostBack="True"  
+                      CssClass="txt"  ProgressDialogID="AJAXUploaderProgressDialog1"
+        TempFileLocation="~/TempFileUploads" onfileuploaded="AJAXUploader1_FileUploaded1" 
+        Width="600px" ProgressBarSkin="Windows_Vista" 
+        BorderColor="#003366">
+        <BrowseButtonStyle CssText="" />
+        <LayoutTemplate>
+            <table border="0" cellpadding="2" cellspacing="0" style="width: 600px; " >
+                <tr>
+                <td align="right" width="200">Upload File : </td>
+                    <td width="500">
+                        <asp:PlaceHolder ID="InputPlaceHolder" runat="server" >Input Box Place Holder
+                        </asp:PlaceHolder>
+                    </td>
+                </tr>
+               
+                <tr>
+
+                    <td colspan="2" align="center" style="padding-top:15px; padding-bottom:15px;">
+                        <asp:Button ID="UploadButton" runat="server" Text="Upload" 
+                            ValidationGroup="D" onclick="UploadButton_Click" />
+                    </td>
+                </tr>              
+
+                <tr>
+                <td align="center" colspan="2" style="padding-top:15px; padding-bottom:15px; ">
+                
+                 <eo:AJAXUploaderProgressDialog ID="AJAXUploaderProgressDialog1" runat="server"  HorizontalAlign="Center"    
+                      Height="110px" Width="500px">
+                      <ContentTemplate>
+                          <p>
+                              &nbsp;</p>
+                          <eo:ProgressBar ID="ProgressBar" runat="server" ControlSkinID="Windows_XP" Width="500px">
+                          </eo:ProgressBar>
+                          <p>
+                              <asp:PlaceHolder ID="ProgressTextPlaceHolder" runat="server"  />
+                          </p>
+                          <div style="text-align:center">
+                              <asp:Button ID="CancelButton" runat="server" Text="Cancel" />
+                          </div>
+                      </ContentTemplate>
+                  </eo:AJAXUploaderProgressDialog>
+                </td>
+                </tr>
+
+                 
+                <tr>
+                <td align="center">
+                
+                    &nbsp;</td>
+                </tr>
+
+                 
+            </table>
+        </LayoutTemplate>
+    </eo:ajaxuploader>
+              
+              
+
+
+                
+              
+              
+              </td>
+            </tr>            
+           
+            
+           
+          </table>
+
+           </ContentTemplate>
+   
+    </asp:UpdatePanel>
+          </center>
+</asp:Content>
+

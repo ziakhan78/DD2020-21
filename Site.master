@@ -1,0 +1,562 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+
+    <title>RI District 3141</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+<meta name="description" content="Rotary is an organisation of business and professional persons united worldwide who provide humanitarian service, encourage high ethical standards in all vocations and 
+help build goodwill and peace in the world. Rotary International District 3141 came into existence on 1st July, 2016 after bifurcation of Rotary International District 3140 on 30th June, 2016. Rotary 
+International District 3141 comprises of the Mumbai Revenue district and has 80 Rotary Clubs and 4,850 members. Rotary International District 3141 also has 96 Rotaract clubs, 215 Interact Clubs and 81 
+Rotary Community Corps. Some of  the prominent Rotary Clubs are Rotary Club of Bombay, Rotary Club of North, Rotary Club of Bombay Pier, Rotary Club of Mumbai Queens Necklace, Rotary Club of Bombay 
+Peninsula">
+
+<meta name="keywords" content="Rotary International District 3141, Rotary Clubs, RI District 3141, Rotary International District 3140, RI District 3140, RID 3140, RI The Rotary Foundation, TRF, The Rotary 
+Foundation Centennial, Clubs In Mumbai, Clubs in India, Rotary Clubs">
+
+<meta name="Classification" content="Rotary International District 3141, Rotary Club, RI District 3141, Rotary Clubs In Mumbai,  Rotary Clubs in India, Clubs In Mumbai Clubs in India, Club, Rotary" /> 
+<meta name="robots" content="index, follow">
+<meta name="category" content="Business & Economy">
+<meta name="copyright" content="Rotary International District 3141">
+<meta name="language" content="EN">
+<meta name="author" content="Goradia Infotech">
+<meta name="creationdate" content="01 August 2016">
+<meta name="distribution" content="global">
+<meta name="rating" content="general">
+	
+    
+    <!-- This site is optimized with the Yoast SEO plugin v3.0.7 - -->
+
+
+ <meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="rotarydist3141" />
+<meta property="og:url" content="http://rotaryindiawashinschools.com/" />
+<meta property="og:site_name" content="rotarydist3141" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Rotary WinS in India"/>
+<script type='application/ld+json'>{"@context":"http:\/\/schema.org","@type":"WebSite","url":"http:\/\/rotarydist3141.com\/","name":"Rotary District 3141","potentialAction":{"@type":"SearchAction","target":"http:\/\/rotarydist3141.com\/?s={search_term_string}","query-input":"required name=search_term_string"}}</script>
+
+
+<!-- / Yoast SEO plugin. -->
+	
+	
+	
+
+
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://www.rotarydist3141.com/js/slippry.min.js"></script>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/global.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://www.rotarydist3141.com/js/slippry.css">
+
+    <link rel="stylesheet" href="styles.css">
+
+
+<script src="script.js"></script>
+
+    <script src="http://www.rotarydist3141.com/js/slippry.min.jsscript.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/bs_leftnavi.css">
+    <script src="http://www.rotarydist3141.com/js/bs_leftnavi.js"></script>
+
+    <asp:ContentPlaceHolder ID="HeaderContent" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <style>
+        .carousel-fade .carousel-inner .item {
+            -webkit-transition-property: opacity;
+            transition-property: opacity;
+        }
+
+        .carousel-fade .carousel-inner .item,
+        .carousel-fade .carousel-inner .active.left,
+        .carousel-fade .carousel-inner .active.right {
+            opacity: 0;
+        }
+
+        .carousel-fade .carousel-inner .active,
+        .carousel-fade .carousel-inner .next.left,
+        .carousel-fade .carousel-inner .prev.right {
+            opacity: 1;
+        }
+
+            .carousel-fade .carousel-inner .next,
+            .carousel-fade .carousel-inner .prev,
+            .carousel-fade .carousel-inner .active.left,
+            .carousel-fade .carousel-inner .active.right {
+                left: 0;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+
+        .carousel-fade .carousel-control {
+            z-index: 2;
+        }
+
+        html,
+        body,
+        .carousel,
+        .carousel-inner,
+        .carousel-inner .item {
+            height: 100%;
+        }
+    </style>
+
+
+
+    <script>
+        function do_special(file) {
+            window.open("./" + file, "Report", "scrollbars=none,menubar=no,top=20,left=70,width=1000,height=800");
+        }
+    </script>
+
+    <script type="text/JavaScript">
+        function MM_openBrWindow(theURL, winName, features) { //v2.0
+            window.open(theURL, winName, features);
+        }
+    </script>
+
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-96021622-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body onload="goforit()">
+    <form runat="server">
+
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+        <div class="container">
+            <div class="row">
+                <div class="top_line_bg fade_anim">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="main_top_left">
+                                    <div class="top_left">
+                                        <img class="unminify01" src="../images/flag.gif" width="26" height="19"  alt="flag">
+                                        <script>
+
+                                            /*
+                                            Live Date Script- 
+                                            (c) Dynamic Drive (www.dynamicdrive.com)
+                                            For full source code, installation instructions, 100's more DHTML scripts, and Terms Of Use,
+                                            visit http://www.dynamicdrive.com
+                                            */
+
+
+                                            var dayarray = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+                                            var montharray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+
+                                            function getthedate() {
+                                                var mydate = new Date()
+                                                var year = mydate.getYear()
+                                                if (year < 1000)
+                                                    year += 1900
+                                                var day = mydate.getDay()
+                                                var month = mydate.getMonth()
+                                                var daym = mydate.getDate()
+                                                if (daym < 10)
+                                                    daym = "0" + daym
+                                                var hours = mydate.getHours()
+                                                var minutes = mydate.getMinutes()
+                                                var seconds = mydate.getSeconds()
+                                                var dn = "AM"
+                                                if (hours >= 12)
+                                                    dn = "PM"
+                                                if (hours > 12) {
+                                                    hours = hours - 12
+                                                }
+                                                if (hours == 0)
+                                                    hours = 12
+                                                if (minutes <= 9)
+                                                    minutes = "0" + minutes
+                                                if (seconds <= 9)
+                                                    seconds = "0" + seconds
+                                                //change font size here
+                                                var cdate = "<small><font color='000000' face='Arial'><b>" + dayarray[day] + ", " + montharray[month] + " " + daym + ", " + year + " " + hours + ":" + minutes + ":" + seconds + " " + dn
+                                                + "</b></font></small>"
+                                                if (document.all)
+                                                    document.all.clock.innerHTML = cdate
+                                                else if (document.getElementById)
+                                                    document.getElementById("clock").innerHTML = cdate
+                                                else
+                                                    document.write(cdate)
+                                            }
+                                            if (!document.all && !document.getElementById)
+                                                getthedate()
+                                            function goforit() {
+                                                if (document.all || document.getElementById)
+                                                    setInterval("getthedate()", 1000)
+                                            }
+
+                                        </script>
+                                        <span id="clock"></span>
+
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+
+
+
+
+
+
+                            </div>
+
+
+
+
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="main_top_right">
+                                    <div class="top_left">
+                                        <a href="../Default.aspx"><i class="fa fa-home"></i></a>
+                                        <a href="#"><i class="fa fa-envelope"></i></a>
+                                        <a href="../Sitemap.aspx"><i class="fa fa-sitemap"></i></a>
+
+
+                                        <div class="btn_up"><a href="" target="_blank" class="muffler">District Clubs&nbsp;</a></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+        <div class="top_line"></div>
+        <div class="container holder">
+            <div class="row">
+                <div class="top_header_bg">
+
+
+                    <div class="col-lg-4 csol-md-4 col-sm-4">
+                        <div class="logo">
+                            <a href="../Default.aspx" class="logo_txt">
+                                <img src="../images/logo_3141.jpg" class="img-responsive" alt="logo 3141" /></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+
+                            <div>
+                                <%-- <a href='../members_login.aspx?id=Profile' class="btn btn-primary"><i class="fa fa-lock"></i>Login</a>--%>
+                                <asp:Label ID="lblMember" runat="server"></asp:Label>
+                                <asp:LinkButton ID="lnkBtnLogin" runat="server" Text="Login" CssClass="btn btn-primary" OnClick="lnkBtnLogin_Click"><i class="fa fa-lock"></i> Login</asp:LinkButton>
+                                <asp:LinkButton ID="lnkBtnLogout" runat="server" Text="Log Out" OnClick="lnkBtnLogout_Click" CssClass="btn btn-primary"><i class="fa fa-lock"></i> Logout</asp:LinkButton>
+                            </div>
+
+                            <div>
+                                <div id="custom-search-input">
+                                    <div class="input-group col-md-12">
+                                        <input type="text" class="  search-query form-control" placeholder="Search" />
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-danger" type="button">
+                                                <span class=" glyphicon glyphicon-search"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="pratham_logo">
+                                <img src="../images/pratham_logo.jpg" alt="logo" />
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--navigation code-->
+
+                    <nav class="">
+                        <!-- end h_menu4 -->
+                        <div class="menu ">
+                            <div id='cssmenu' class="fade_anim ">
+                                <ul class="hack">
+                                    <li><a href="../District3141/AboutDistrict3141.aspx">District 3141</a></li>
+                                    <li><a href="../Team3141/AdministrativeTeam.aspx">Team 3141</a>
+                                    <li><a href="../Clubs3141/DistrictClubs.aspx">Clubs 3141</a>
+                                    <li><a href="../RotaryInternational/RIAbout.aspx">Rotary International</a></li>
+                                    <li><a href="../TRF/HistoryofTheRotaryFoundation.aspx">TRF</a></li>
+                                    <li><a href="../Projects.aspx">Projects</a></li>
+                                    <li><a href="../PublicRelations/GovernorsMonthlyLetter.aspx">Public Relations </a></li>
+                                    <li><a href="../GetInvolved/JoinRotary.aspx">Get Involved</a></li>
+                                    <li><a href="../Events.aspx">Events</a></li>
+                                    <li><a href="../PartnersInService.aspx">Partners In Service</a></li>
+                                    <li><a href="../Polls.aspx">Polls</a></li>
+                                    <li><a href="../Downloads/PowerpointPresentations.aspx">Downloads</a></li>
+                                    <li><a href="../Gallery.aspx">Gallery</a></li>
+                                    <li><a href="../Contact.aspx">Contact</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+
+
+
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+
+
+        <div class="container holder">
+            <div class="row">
+
+                <div id='carousel-example-generic' class='carousel slide carousel-fade' data-ride='carousel'>
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#hero-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#hero-carousel" data-slide-to="1"></li>
+                        <li data-target="#hero-carousel" data-slide-to="2"></li>
+                        <li data-target="#hero-carousel" data-slide-to="3"></li>
+                        <li data-target="#hero-carousel" data-slide-to="4"></li>
+                        <li data-target="#hero-carousel" data-slide-to="5"></li>
+                        <li data-target="#hero-carousel" data-slide-to="6"></li>
+                        <li data-target="#hero-carousel" data-slide-to="7"></li>
+                        <li data-target="#hero-carousel" data-slide-to="8"></li>
+
+
+                    </ol>
+                    <!-- Wrapper for slides -->
+                    <div class='carousel-inner'>
+                        <div class='item active'>
+                            <div>
+                                <img class="img-responsive text-center" src='img/banner01.jpg' alt='banner01' />
+                            </div>
+                        </div>
+                        <div class='item'>
+                            <div>
+                                <img class="img-responsive text-center" src='img/banner02.jpg' alt='banner02' />
+                            </div>
+                        </div>
+                        <div class='item'>
+                            <div>
+                                <img class="img-responsive text-center" src='img/banner03.jpg' alt='banner03' />
+                            </div>
+                        </div>
+
+                        <div class='item'>
+                            <div>
+                                <img class="img-responsive text-center" src='img/banner04.jpg' alt='banner04' />
+                            </div>
+                        </div>
+
+                        <div class='item'>
+                            <div>
+                                <img class="img-responsive text-center" src='img/banner05.jpg' alt='banner05' />
+                            </div>
+                        </div>
+
+
+                        <div class='item'>
+                            <div>
+                                <img class="img-responsive text-center" src='img/banner06.jpg' alt='banner06' />
+                            </div>
+                        </div>
+
+
+                        <div class='item'>
+                            <div>
+                                <img class="img-responsive text-center" src='img/banner07.jpg' alt='banner07' />
+                            </div>
+                        </div>
+
+                        <div class='item'>
+                            <div>
+                                <img class="img-responsive text-center" src='img/banner08.jpg' alt='banner08' />
+                            </div>
+                        </div>
+
+                        <div class='item'>
+                            <div>
+                                <img class="img-responsive text-center" src='img/banner09.jpg' alt='banner09' />
+                            </div>
+                        </div>
+
+
+
+                        <div class='item'>
+                            <div>
+                                <img class="img-responsive text-center" src='img/banner10.jpg' alt='banner10' />
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+
+                    <a class='left carousel-control' href='#carousel-example-generic' data-slide='prev'>
+                        <span class='glyphicon glyphicon-chevron-left'></span>
+                    </a>
+                    <a class='right carousel-control' href='#carousel-example-generic' data-slide='next'>
+                        <span class='glyphicon glyphicon-chevron-right'></span>
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+
+
+        <footer class="fade_anim">
+            <div class="top_line"></div>
+            <div class="footer_main foot_bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <a href="javascript:void(0)" onclick="MM_openBrWindow('http://www.rotarydist3141.com/SponsorsPopUp','01111','width=600, height=750, scrollbars=1')"><div class="footer_left"></div></a>
+
+                            <div class="clearfix"></div>
+
+                        </div>
+
+
+
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="copy text-center">
+                                <a href="../Contact.aspx">Contact Us</a> | <a href="../TermsOfUse.aspx">Terms of Use</a> | <a href="../Sitemap.aspx">Sitemap</a><br>
+                                Copyright © 2016 RI District 3141 | All Rights Reserved | Site Designed & Maintained By <a href="http://www.goradiainfotech.com/" target="_blank">Goradia Infotech</a>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+
+                            <div class="follow-us">
+                                <span>Follow Us On:</span>
+                                <a href="#" target="_blank" title="Facebook"><i class="fa fa-facebook-square"></i></a>&nbsp;  
+                                <a href="#" target="_blank" title="Youtube"><i class="fa fa-youtube-square"></i></a>
+
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+
+
+
+
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="js/ie10-viewport-bug-workaround.js"></script>
+
+        <script>
+            $(function () {
+                var demo1 = $("#demo1").slippry({
+                    // transition: 'fade',
+                    // useCSS: true,
+                    // speed: 1000,
+                    // pause: 3000,
+                    // auto: true,
+                    // preload: 'visible',
+                    // autoHover: false
+                });
+
+                $('.stop').click(function () {
+                    demo1.stopAuto();
+                });
+
+                $('.start').click(function () {
+                    demo1.startAuto();
+                });
+
+                $('.prev').click(function () {
+                    demo1.goToPrevSlide();
+                    return false;
+                });
+                $('.next').click(function () {
+                    demo1.goToNextSlide();
+                    return false;
+                });
+                $('.reset').click(function () {
+                    demo1.destroySlider();
+                    return false;
+                });
+                $('.reload').click(function () {
+                    demo1.reloadSlider();
+                    return false;
+                });
+                $('.init').click(function () {
+                    demo1 = $("#demo1").slippry();
+                    return false;
+                });
+            });
+        </script>
+
+
+    </form>
+</body>
+</html>

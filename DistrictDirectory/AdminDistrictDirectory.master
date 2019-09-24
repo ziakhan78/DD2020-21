@@ -1,0 +1,224 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="AdminDistrictDirectory.master.cs" Inherits="Admin_AdminDistrictDirectory" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href="../css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="../css/admin_login.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <title>:: Admin District Directory ::</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <div>
+            <table width="1335" border="0" align="center" cellpadding="0" cellspacing="0">
+
+                <tr style="background-image: url(../admin_icons/header_admin.jpg); height: 114px; width: 1335px;">
+                    <td style="text-align: right; padding-right: 15px; padding-bottom: 5px; padding-top: 40px;"><span style="font-weight: bold; font-size: medium; margin-top: 20px;">
+                        <asp:Label ID="lblwelcome" runat="server" Font-Size="Medium" ForeColor="White"></asp:Label></span>
+                        <asp:ImageButton ID="btnLogout" runat="server" OnClick="btnLogout_Click" ImageUrl="~/admin_icons/logout.png" CausesValidation="false" ToolTip="Logout" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="left" valign="top" style="width: 1335px" colspan="2">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+                            <tr>
+                                <td height="36" align="left" valign="top">
+                                    <table width="1335" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+
+                                            <td width="240" valign="top">
+                                                <table width="240" border="0" cellspacing="0" cellpadding="0" id="">
+                                                    <tr>
+                                                        <td valign="top" style="background-image: url(../Admin_Icons/bg_top.jpg)">
+                                                            <img src="../Admin_Icons/left_top_corner.jpg" alt="" /></td>
+                                                        <td style="background-image: url(../Admin_Icons/bg_top.jpg)"></td>
+                                                        <td width="12" height="14" align="right" valign="top" style="background-image: url(../Admin_Icons/bg_top.jpg)">
+                                                            <img src="../Admin_Icons/right_top_corner.jpg" alt="" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td valign="top" style="background-image: url(../Admin_Icons/bg_lt.jpg)">
+                                                            <img src="../Admin_Icons/bg_lt.jpg" width="14" height="1" alt="" /></td>
+                                                        <td valign="top" align="left">
+
+                                                            <!-- Admin treeview control start -->
+
+
+                                                            <telerik:RadTreeView ID="RadTreeView1" runat="server" Skin="Default" SingleExpandPath="True" OnNodeClick="RadTreeView1_NodeClick" OnNodeExpand="RadTreeView1_NodeExpand" CssClass="treeView">
+                                                                <Nodes>
+                                                                    <telerik:RadTreeNode runat="server" Text="Admin Users" Value="Admin Users" PostBack="False">
+                                                                        <Nodes>
+                                                                            <telerik:RadTreeNode runat="server" Text="Add Admin Users"
+                                                                                ImageUrl="~/admin_icons/icon-add.gif"
+                                                                                Checked="True">
+                                                                            </telerik:RadTreeNode>
+                                                                            <telerik:RadTreeNode runat="server" Text="View Admin Users"
+                                                                                ImageUrl="~/admin_icons/icon-jcat.gif" Checked="True">
+                                                                            </telerik:RadTreeNode>
+                                                                        </Nodes>
+                                                                    </telerik:RadTreeNode>                                                       
+
+                                                           
+
+                                                                    <telerik:RadTreeNode runat="server" Text="Masters" PostBack="False">
+                                                                        <Nodes>
+
+                                                                             <telerik:RadTreeNode runat="server" ImageUrl="~/admin_icons/icon-add.gif"
+                                                                                Text="Add Avenue" Checked="True">
+                                                                            </telerik:RadTreeNode>
+
+                                                                            <telerik:RadTreeNode runat="server" Text="View Avenue"
+                                                                                ImageUrl="~/admin_icons/icon-jcat.gif" Checked="True">
+                                                                            </telerik:RadTreeNode>
+
+                                                                            <telerik:RadTreeNode runat="server" ImageUrl="~/admin_icons/icon-add.gif"
+                                                                                Text="Add Designation" Checked="True">
+                                                                            </telerik:RadTreeNode>
+
+                                                                            <telerik:RadTreeNode runat="server" Text="View Designation"
+                                                                                ImageUrl="~/admin_icons/icon-jcat.gif" Checked="True">
+                                                                            </telerik:RadTreeNode>
+                                                                           
+                                                                        </Nodes>
+                                                                    </telerik:RadTreeNode>
+
+
+
+                                                                     <telerik:RadTreeNode runat="server" Text="District Directory" PostBack="False">
+                                                                        <Nodes>
+                                                                           <telerik:RadTreeNode runat="server" ImageUrl="~/admin_icons/icon-add.gif"
+                                                                                Text="Add District Appointments" Checked="True">
+                                                                            </telerik:RadTreeNode>
+                                                                            <telerik:RadTreeNode runat="server" Text="View District Appointments"
+                                                                                ImageUrl="~/admin_icons/icon-jcat.gif" Checked="True">
+                                                                            </telerik:RadTreeNode>
+
+                                                                             <telerik:RadTreeNode runat="server" Text="Avenue Wise Report" ImageUrl="~/admin_icons/exl.gif">
+                                                                            </telerik:RadTreeNode>
+                                                                            <telerik:RadTreeNode runat="server" Text="Club Wise Gist Report" ImageUrl="~/admin_icons/exl.gif">
+                                                                            </telerik:RadTreeNode>
+                                                                             <telerik:RadTreeNode runat="server" Text="Club Wise Report" ImageUrl="~/admin_icons/exl.gif">
+                                                                            </telerik:RadTreeNode>
+
+
+                                                                        </Nodes>
+                                                                    </telerik:RadTreeNode>
+
+
+
+
+
+                                                                    <telerik:RadTreeNode runat="server" Text="Change Admin Password"
+                                                                        Checked="True">
+                                                                    </telerik:RadTreeNode>
+
+
+                                                                </Nodes>
+                                                            </telerik:RadTreeView>
+
+                                                            <!-- Admin treeview control end -->
+
+                                                        </td>
+                                                        <td style="background-image: url(../Admin_Icons/bg_rg.jpg)">
+                                                            <img src="../Admin_Icons/bg_rg.jpg" width="14" height="1" alt="" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="12" height="14" align="left" valign="bottom" style="background-image: url(../Admin_Icons/bg_botm.jpg)">
+                                                            <img src="../Admin_Icons/left_btm_corner.jpg" alt="" /></td>
+                                                        <td height="14" style="background-image: url(../Admin_Icons/bg_botm.jpg)"></td>
+                                                        <td align="right" valign="bottom" style="background-image: url(../Admin_Icons/bg_botm.jpg)">
+                                                            <img src="../Admin_Icons/right_btm_corner.jpg" alt="" /></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <img src="../Admin_Icons/blank_space.gif" width="10" height="450" alt="" /></td>
+                                            <td style="width: 1085px; vertical-align: top; text-align: left;">
+                                                <table style="width: 100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td style="background-image: url(../Admin_Icons/bg_top.jpg)">
+                                                            <img src="../Admin_Icons/left_top_corner.jpg" width="12" height="14" alt="" /></td>
+                                                        <td style="background-image: url(../Admin_Icons/bg_top.jpg)"></td>
+                                                        <td width="12" align="right" valign="top" style="background-image: url(../Admin_Icons/bg_top.jpg)">
+                                                            <img src="../Admin_Icons/right_top_corner.jpg" alt="" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="background-image: url(../Admin_Icons/bg_lt.jpg)">
+                                                            <img src="../Admin_Icons/bg_lt.jpg" width="14" height="1" alt="" /></td>
+                                                        <td valign="top" style="height: auto; width: 1085px;">
+
+                                                            <!-- Admin Content Panel start -->
+                                                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                                            </asp:ContentPlaceHolder>
+                                                            <!-- Admin Content Panel end -->
+
+
+                                                            <!-- Ajax Loader start -->
+
+                                                            <asp:UpdateProgress ID="UpdateProgress1" runat="server" DynamicLayout="false">
+                                                                <ProgressTemplate>
+                                                                    <div style="padding-left: 250px;">
+                                                                        <img src="../admin_icons/loading.gif" alt="" />
+                                                                    </div>
+                                                                </ProgressTemplate>
+                                                            </asp:UpdateProgress>
+
+                                                            <cc1:AlwaysVisibleControlExtender ID="AlwaysVisibleControlExtender2" runat="server"
+                                                                TargetControlID="UpdateProgress1" HorizontalSide="Center"
+                                                                VerticalSide="Middle">
+                                                            </cc1:AlwaysVisibleControlExtender>
+
+                                                            <!-- Ajax Loader End -->
+
+
+                                                        </td>
+                                                        <td style="background-image: url(../Admin_Icons/bg_rg.jpg)">
+                                                            <img src="../Admin_Icons/bg_rg.jpg" width="14" height="1" alt="" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="12" align="left" valign="bottom" style="background-image: url(../Admin_Icons/bg_botm.jpg)">
+                                                            <img src="../Admin_Icons/left_btm_corner.jpg" width="12" height="14" alt="" /></td>
+                                                        <td style="background-image: url(../Admin_Icons/bg_botm.jpg)"></td>
+                                                        <td align="right" valign="bottom" style="background-image: url(../Admin_Icons/bg_botm.jpg)">
+                                                            <img src="../Admin_Icons/right_btm_corner.jpg" width="12" height="14" alt="" /></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <footer>
+
+                <div align="center">Copyright © 2019 RI District 3141. All Rights Reserved. | Site Designed & Maintained By <a href="http://www.goradiainfotech.com/" target="_blank">Goradia Infotech</a></div>
+            </footer>
+
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </form>
+</body>
+</html>

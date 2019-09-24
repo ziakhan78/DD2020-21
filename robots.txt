@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /adminlog/
+Disallow: /Inve/
+
+
+Sitemap: http://rotarydist3141.com/sitemap.xml

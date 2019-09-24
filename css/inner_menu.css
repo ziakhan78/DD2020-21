@@ -1,0 +1,150 @@
+/* Slider
+http://www.freshdesignweb.com/drop-down-responsive-menu-with-css3-and-jquery.html
+*/
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+/*=====  style ======*/
+#dhy  select {
+	display:none; /* this is just for the mobile display */
+}
+#dhy ul {
+	display:block;
+	z-index:999999;
+	margin-top:10px; text-align:center;
+}
+#dhy ul li {
+	display:inline-block;
+	padding:0px 12px 0px 0px;
+	margin-left:6px;
+	position:relative;
+
+}
+#dhy ul li a:link, #dhy  ul li a:visited {
+	color:#000;
+	font:normal 12px 'Oswald', sans-serif;
+	text-transform:none;
+	display:inline-block;
+	position:relative;
+	text-decoration:none;
+}
+#dhy ul li a:hover, #dhy  ul li a:active {
+	color:#1b83c3;
+	text-decoration:none;
+}
+#dhy ul li span {
+	position:absolute;
+	right:-12px;
+	bottom:6px;
+	width:7px;
+	height:8px;
+	margin:0 0 0 3px;
+	float:right;
+	display:block;
+	
+	font:0/0 a;
+}
+
+#dhy ul li {
+border-right:1px solid #0b0b0b;
+
+ 
+}
+
+
+#dhy li:last-child {
+    border-right:none;
+
+}
+
+
+
+#dhy ul li.current {
+/*	border-bottom:2px solid #e25d29;*/
+}
+#dhy ul li.current a {
+	color:#1b83c3;
+	cursor: default;
+}
+#dhy ul li.current a span {
+	background:url('../images/_arrow.png') no-repeat left 0;
+}
+#dhy  ul li.current ul li a {
+	cursor:pointer;
+}
+
+/*===== sub_menu Style =======*/
+#dhy ul li ul.sub_menu {
+	position:absolute;
+	top:0px;
+	left:0;
+	margin:0;
+	padding:0;
+	background:#fff;
+	border:1px solid #ececec;
+	border-top:5px solid #e25d29;
+	display:none;
+	z-index:999999;
+   
+}
+#dhy ul li ul.sub_menu li.arrow_top {
+	position:absolute;
+	top:-12px;
+	left:12px;
+	width:13px;
+	height:8px;
+	display:block;
+	border:none;
+	background:url('images/arrow_top.png') no-repeat left top;
+}
+#dhy ul li ul.sub_menu li {
+	float:none;
+	margin:0;
+	padding:0;
+	border-bottom:1px solid #ececec;
+}
+#dhy ul li ul.sub_menu li a {
+	white-space: nowrap;
+	width: 150px;
+	padding:12px;
+	font:13px Arial, tahoma, sans-serif;
+	text-transform:capitalize;
+	color:#777;
+}
+#dhy ul li ul.sub_menu li a:hover {
+	background:#f9f9f9;
+	color:#333;
+}
+#dhy ul li ul.sub_menu li a.subCurrent {
+	color:#e25d29;
+	cursor:default;
+}
+#dhy  ul li ul.sub_menu li a.subCurrent:hover {
+	background:none;
+}
+/*===================== end Header style ======================*/
+
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+		/*  */
+		#dhy ul li{
+			margin-left:12px;
+		}
+}
+
+	/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+
+		/*  menu ul & select */
+		#dhy ul {
+			display: block;
+		}
+		#dhy select {
+			width:100%;
+			display:block;
+			margin-bottom:30px;
+			cursor:pointer;
+			padding:6px;
+			background:#f9f9f9;
+			border:1px solid #e3e3e3;
+			color:#777;
+		}
+}

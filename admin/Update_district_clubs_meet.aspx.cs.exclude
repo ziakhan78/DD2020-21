@@ -1,0 +1,370 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+
+public partial class admin_Update_district_clubs_meet : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Session["user"] != null)
+        {
+            if (!IsPostBack)
+            {
+                BindDays();
+                BindMonth();
+                BindYear();
+                BindTime();
+                if (Request.QueryString["eid"] != null)
+                {
+                    int id = int.Parse(Request.QueryString["eid"].ToString());
+                    Getdistrict_club(id);
+                }
+            }
+        }
+        else
+        {
+            Session.Abandon();
+            Response.Redirect("Default.aspx");
+        }
+    }
+    private void BindTime()
+    {
+        string s = "";
+        for (int i = 1; i <= 12; i++)
+        {
+            if (i <= 9)
+            {
+                s = "0" + i;
+            }
+            else
+            {
+                s = i.ToString();
+            }
+            DDLTimeH.Items.Add(s.ToString());
+        }
+        DDLTimeH.Items.Insert(0, "HH");
+        DDLTimeH.Items.Insert(1, "00");
+        for (int i = 5; i <= 55; i = i + 5)
+        {
+            if (i <= 9)
+            {
+                s = "0" + i;
+            }
+            else
+            {
+                s = i.ToString();
+            }
+            DDLTimeM.Items.Add(s.ToString());
+        }
+        DDLTimeM.Items.Insert(0, "MM");
+        DDLTimeM.Items.Insert(1, "00");
+    }
+    private void Getdistrict_club(int id)
+    {
+        DBconnection obj = new DBconnection();
+        obj.SetCommandSP = "m_get_district_club";
+        obj.AddParam("@id", id);
+        DataTable dt = new DataTable();
+        dt = obj.ExecuteTable();
+        if (dt.Rows.Count > 0)
+        {
+            txtClubName.Text = dt.Rows[0]["club_name"].ToString();
+            txtClubNo.Text = dt.Rows[0]["club_no"].ToString();
+
+            string[] charterDate = dt.Rows[0]["charter_date"].ToString().Split('/');
+            if (charterDate.Length > 1)
+            {
+                DDLDays.SelectedValue = charterDate[0].ToString();
+                DDLMonth.SelectedItem.Text = charterDate[1].ToString();
+                DDLYear.SelectedValue = charterDate[2].ToString();
+            }
+
+            txtPHF.Text = dt.Rows[0]["phf"].ToString();
+            txtTRFSM.Text = dt.Rows[0]["trfsm"].ToString();
+            txtMD.Text = dt.Rows[0]["md"].ToString();
+            txtPHSM.Text = dt.Rows[0]["phsm"].ToString();
+            txtNoOfMembers.Text = dt.Rows[0]["no_of_members"].ToString();
+
+            string[] time = dt.Rows[0]["time"].ToString().Split(':');
+            DDLTimeH.SelectedValue = time[0].ToString();
+            DDLTimeM.SelectedValue = time[1].ToString();
+            DDLTime2.SelectedValue = time[2].ToString();
+           
+            DDLDay.SelectedItem.Text = dt.Rows[0]["meet_days"].ToString();
+            txtVenue1.Text = dt.Rows[0]["venue1"].ToString();
+            txtVenue2.Text = dt.Rows[0]["venue2"].ToString();
+            txtVenue3.Text = dt.Rows[0]["venue3"].ToString();
+
+            txtCity.Text = dt.Rows[0]["city"].ToString();
+            txtPin.Text = dt.Rows[0]["pin"].ToString();
+            txtState.Text = dt.Rows[0]["state"].ToString();
+            txtCountry.Text = dt.Rows[0]["country"].ToString();
+            txtLatitude.Text = dt.Rows[0]["gps_latitude"].ToString();
+            txtLongitude.Text = dt.Rows[0]["gps_longitude"].ToString();
+            string location_map = dt.Rows[0]["location_map"].ToString();
+
+
+            BindRotaractGrid(id);
+
+            
+        }
+    }
+    private void updatedistclub(int id)
+    {
+        try
+        {
+            string h, m, am, time = "";
+            h = DDLTimeH.SelectedItem.Text;
+            m = DDLTimeM.SelectedItem.Text;
+            am = DDLTime2.SelectedItem.Text;
+
+            time = h + ":" + m + ":" + am;
+
+            DistrictClub dc = new DistrictClub();
+            dc.Id = id;
+            dc.Time = time;
+            dc.Days = DDLDay.SelectedItem.Text;
+            dc.ClubName = txtClubName.Text.ToString();
+
+            dc.ClubNo = int.Parse(txtClubNo.Text.ToString());
+            dc.CharterDate = DDLDays.SelectedItem.Text + "/" + DDLMonth.SelectedItem.Text + "/" + DDLYear.SelectedItem.Text;
+            dc.Phf = int.Parse(txtPHF.Text.ToString());
+            dc.Trfsm = int.Parse(txtTRFSM.Text.ToString());
+            try
+            {
+                dc.Md = int.Parse(txtMD.Text.ToString());
+            }
+            catch { dc.Md = 0; }
+            try
+            {
+                dc.Phsm = int.Parse(txtPHSM.Text.ToString());
+            }
+            catch { dc.Phsm = 0; }
+            dc.NoOfMembers = int.Parse(txtNoOfMembers.Text.ToString());
+
+            dc.Venu1 = txtVenue1.Text.Trim();
+            dc.Venu2 = txtVenue2.Text.Trim();
+           // dc.Landmark = txtLandm.Text.Trim();
+            dc.City = txtCity.Text.Trim();
+            dc.Pin = txtPin.Text.Trim();
+            dc.State = txtState.Text.Trim();
+            dc.Country = txtCountry.Text.Trim();
+            dc.GpsLatitude = txtLatitude.Text.Trim();
+            dc.GpsLongitude = txtLongitude.Text.Trim();
+
+            string mapPath = SaveImages();
+            dc.LocationMap = mapPath;
+
+
+
+            int exe = dc.UpdateDistrictClub();
+            if (exe > 0)
+            {
+                UpdateRotaractUnderDistt();
+                showmsg("Record updated successfully !", "View_where_district_clubs_meet.aspx");
+            }
+
+
+            
+        }
+        catch { }
+ 
+    }
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        if (Page.IsValid)
+        {
+            if (Request.QueryString["eid"] != null)
+            {
+                int id = int.Parse(Request.QueryString["eid"].ToString());
+
+                updatedistclub(id);
+            }
+        }
+    }
+
+    public void showmsg(string msg, string RedirectUrl)
+    {
+        try
+        {
+            string strScript = "<script>";
+            strScript += "alert('" + msg + "');";
+            strScript += "window.location='" + RedirectUrl + "';";
+            strScript += "</script>";
+            Label lbl = new Label();
+            lbl.Text = strScript;
+            Page.Controls.Add(lbl);
+        }
+        catch { }
+    }
+    protected void btncancel_Click(object sender, EventArgs e)
+    {
+
+    }
+    private string SaveImages()
+    {
+        string imgPath = "";
+        string ext;
+        string ipath = "";
+
+        if (FileUpload1.HasFile)
+        {
+            imgPath = FileUpload1.PostedFile.FileName;
+            imgPath = imgPath.Substring(imgPath.LastIndexOf("\\") + 1);
+            string imageTime = System.DateTime.Now.ToString();
+            imageTime = imageTime.Replace("/", "");
+            imageTime = imageTime.Replace(":", "");
+            imageTime = imageTime.Replace(" ", "");
+            ext = imgPath.Substring(imgPath.LastIndexOf("."));
+            imgPath = imgPath.Substring(0, imgPath.LastIndexOf("."));
+            imgPath = imgPath + imageTime + ext;
+
+            try
+            {
+                ipath = Server.MapPath("~") + "\\DistrictLocationMaps\\" + imgPath;
+                FileUpload1.PostedFile.SaveAs(ipath);
+
+            }
+            catch (Exception ex)
+            {
+                string ss = ex.Message;
+            }
+        }
+        return imgPath;
+
+    }
+    private void BindDays()
+    {
+        string s = "";
+        try
+        {
+
+            for (int i = 1; i <= 31; i++)
+            {
+                if (i <= 9)
+                {
+                    s = "0" + i;
+                    //i = int.Parse(s.ToString());
+                }
+                else
+                {
+                    s = i.ToString();
+                }
+                DDLDays.Items.Add(s.ToString());
+
+            }
+            DDLDays.Items.Insert(0, "Day");
+
+        }
+        catch (Exception E)
+        {
+            Response.Write(E.Message.ToString());
+        }
+    }
+    private void BindMonth()
+    {
+        try
+        {
+
+            for (int i = 1; i <= 12; i++)
+            {
+                ListItem item = new ListItem();
+                item.Text = new DateTime(1900, i, 1).ToString("MMMM");
+                item.Value = i.ToString();
+                DDLMonth.Items.Add(item);
+            }
+            DDLMonth.Items.Insert(0, "Month");
+
+        }
+        catch (Exception E)
+        {
+            Response.Write(E.Message.ToString());
+        }
+    }
+    private void BindYear()
+    {
+        try
+        {
+            for (Int32 i = 1920; i <= Convert.ToInt32(DateTime.Now.Year); i++)
+            {
+                DDLYear.Items.Add(i.ToString());
+
+            }
+            DDLYear.Items.Insert(0, "Year");
+
+        }
+        catch (Exception E)
+        {
+            Response.Write(E.Message.ToString());
+        }
+    }
+    private void BindGrid()
+    {
+        DBconnection obj = new DBconnection();
+        obj.SetCommandQry = "select  ROW_NUMBER () OVER (ORDER BY [id] asc) AS RowNumber,club_name FROM rotaract_under_distclub_tbl where temp_id='0'";
+        DataTable dt = new DataTable();
+        dt = obj.ExecuteTable();
+        if (dt.Rows.Count > 0)
+        {
+            RadGrid1.DataSource = dt;
+            RadGrid1.DataBind();
+        }
+    }
+    private void BindRotaractGrid(int disttId)
+    {
+        DBconnection obj = new DBconnection();
+        obj.SetCommandQry = "select  ROW_NUMBER () OVER (ORDER BY [id] asc) AS RowNumber,club_name FROM rotaract_under_distclub_tbl where distt_id=" + disttId;
+        DataTable dt = new DataTable();
+        dt = obj.ExecuteTable();
+        if (dt.Rows.Count > 0)
+        {
+            RadGrid1.DataSource = dt;
+            RadGrid1.DataBind();
+        }
+    }
+    
+
+    private void UpdateRotaractUnderDistt()
+    {
+        int disttClubId = int.Parse(Request.QueryString["eid"].ToString().Trim());
+        DBconnection obj = new DBconnection();
+        obj.SetCommandQry = "update rotaract_under_distclub_tbl set temp_id='1', distt_id='" + disttClubId + "' where temp_id='0'";
+
+        int exe = obj.ExecuteNonQuery();
+
+        if (exe > 0)
+        {
+        }
+    }
+    protected void DDLRotaractClub_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            int disttClubId = 0;
+            if (Request.QueryString["eid"] != null)
+            {
+                disttClubId = int.Parse(Request.QueryString["eid"].ToString().Trim());
+            }
+
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_AddRotaractUDistt";
+            obj.AddParam("@distt_id", disttClubId);
+            obj.AddParam("@rotaract_id", int.Parse(DDLRotaractClub.SelectedValue.ToString()));
+            obj.AddParam("@club_name", DDLRotaractClub.SelectedItem.Text.Trim());
+
+            int exe = obj.ExecuteNonQuery();
+
+            if (exe > 0)
+            {
+                //BindGrid();
+                BindRotaractGrid(disttClubId);
+            }
+        }
+        catch { }
+    }
+}

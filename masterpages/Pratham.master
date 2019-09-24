@@ -1,0 +1,126 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Pratham.master.cs" Inherits="masterpages_Pratham" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href="../css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="../css/admin_login.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <title>:: Rotary District 3141 | Admin ::</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <div>
+            <table width="1335" border="0" align="center" cellpadding="0" cellspacing="0">
+
+                <tr style="background-image: url(../admin_icons/header_admin.jpg); height: 114px; width: 1335px;">
+                    <td style="text-align: right; padding-right: 15px; padding-bottom: 5px; padding-top: 40px;"><span style="font-weight: bold; font-size: medium; margin-top: 20px;">
+                        <asp:Label ID="lblwelcome" runat="server" Font-Size="Medium" ForeColor="White"></asp:Label></span>
+                        <asp:ImageButton ID="btnLogout" runat="server" OnClick="btnLogout_Click" ImageUrl="~/admin_icons/logout.png" CausesValidation="false" ToolTip="Logout" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="left" valign="top" style="width: 100%" colspan="2">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+                            <tr>
+                                <td height="36" align="left" valign="top">
+                                    <table width="1335" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                        
+                                            <td>
+                                                <img src="../Admin_Icons/blank_space.gif" width="10" height="450" alt="" /></td>
+                                            <td style="width: 100%; vertical-align: top; text-align: left;">
+                                                <table style="width: 100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td style="background-image: url(../Admin_Icons/bg_top.jpg)">
+                                                            <img src="../Admin_Icons/left_top_corner.jpg" width="12" height="14" alt="" /></td>
+                                                        <td style="background-image: url(../Admin_Icons/bg_top.jpg)"></td>
+                                                        <td width="12" align="right" valign="top" style="background-image: url(../Admin_Icons/bg_top.jpg)">
+                                                            <img src="../Admin_Icons/right_top_corner.jpg" alt="" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="background-image: url(../Admin_Icons/bg_lt.jpg)">
+                                                            <img src="../Admin_Icons/bg_lt.jpg" width="14" height="1" alt="" /></td>
+                                                        <td valign="top" style="height: auto; width: 1085px;">
+
+                                                            <!-- Admin Content Panel start -->
+                                                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                                            </asp:ContentPlaceHolder>
+                                                            <!-- Admin Content Panel end -->
+
+
+                                                            <!-- Ajax Loader start -->
+
+                                                            <asp:UpdateProgress ID="UpdateProgress1" runat="server" DynamicLayout="false">
+                                                                <ProgressTemplate>
+                                                                    <div style="padding-left: 250px;">
+                                                                        <img src="../admin_icons/loading.gif" alt="" />
+                                                                    </div>
+                                                                </ProgressTemplate>
+                                                            </asp:UpdateProgress>
+
+                                                            <cc1:AlwaysVisibleControlExtender ID="AlwaysVisibleControlExtender2" runat="server"
+                                                                TargetControlID="UpdateProgress1" HorizontalSide="Center"
+                                                                VerticalSide="Middle">
+                                                            </cc1:AlwaysVisibleControlExtender>
+
+                                                            <!-- Ajax Loader End -->
+
+
+                                                        </td>
+                                                        <td style="background-image: url(../Admin_Icons/bg_rg.jpg)">
+                                                            <img src="../Admin_Icons/bg_rg.jpg" width="14" height="1" alt="" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="12" align="left" valign="bottom" style="background-image: url(../Admin_Icons/bg_botm.jpg)">
+                                                            <img src="../Admin_Icons/left_btm_corner.jpg" width="12" height="14" alt="" /></td>
+                                                        <td style="background-image: url(../Admin_Icons/bg_botm.jpg)"></td>
+                                                        <td align="right" valign="bottom" style="background-image: url(../Admin_Icons/bg_botm.jpg)">
+                                                            <img src="../Admin_Icons/right_btm_corner.jpg" width="12" height="14" alt="" /></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <footer>
+
+                <div align="center">Copyright © 2015 RI District 3141. All Rights Reserved. | Site Designed & Maintained By <a href="http://www.goradiainfotech.com/" target="_blank">Goradia Infotech</a></div>
+            </footer>
+
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </form>
+</body>
+</html>

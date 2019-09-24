@@ -1,0 +1,63 @@
+﻿
+/* Calendar CSS */
+
+a {
+    color: #000000;
+    text-decoration: none;     
+}
+
+.evnt-day {
+    display: inline;
+}
+.evnt-day {
+    background: url("../images/day.png") no-repeat scroll center top transparent;
+    float: left;
+    width:85px;
+    height:63px;
+    margin: 5px 8px 4px 15px !important;
+    position: relative;
+   
+}
+.evnt-day .day 
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 10px; color: #808080;     
+    float: left;     
+    height: 14px;
+    padding: 0px;
+    position: relative;    
+    text-transform: uppercase;
+    width: 0px;
+   
+     margin-top:10px;      
+}
+
+.evnt-day .date {
+    color: #FFFFFF;
+    float: right;
+    font: 11px Arial,sans-serif;
+    height: 0px;
+    padding: 0px;
+    position: relative;
+    text-align: center;
+   
+    padding-bottom:0px;
+    margin-top:5px;  
+    
+}
+span.numofeve {
+   
+    color:#000000; 
+    font-weight:normal;  
+    font-size:10px; 
+    padding-right:13px;  
+}
+
+.evnt-day .date-no{
+    clear: left;    
+    color: #808080;
+    font: bold 20px Arial;
+   padding-top:7px;
+    text-align: center;
+   
+}

@@ -1,0 +1,561 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using Telerik.Web.UI;
+
+public partial class admin_add_rotary_projects : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Session["user"] != null)
+        {
+            if (!IsPostBack)
+            {
+                lblPresident.Text = "";
+                //lblPresident.Text = Session["AdminUserName"].ToString();
+               // lblClubName.Text = Session["ClubName"].ToString();
+
+                //RadGrid1.Visible = false;
+               
+                //BindMembers();
+                //BindMembersSpouses();
+               
+                BindYears();
+                TRPartnerClub_JointList.Visible = false;
+                txtDistClubName.Visible = false;
+                txtDistrictNo.Visible = false;
+                TRPartnerClub_JointList.Visible = false;
+                TRDistType_Joint.Visible = false;
+                TRPartnerClub_Joint.Visible = false;
+               // TRDistrictNo_Joint.Visible = false;
+                TRDistrictGrantNo.Visible = false;
+                TRGlobalGrantNo.Visible = false;
+               // TRPartnerClub_Global.Visible = false;
+               // TRDistrictNo_Global.Visible = false;
+               // TRDistNoGlobal.Visible = false;
+
+                if (Request.QueryString["id"] != null)
+                {
+                    //RadGrid1.Visible = true;
+                    int id = int.Parse(Request.QueryString["id"].ToString());
+                    GetProjects(id);
+                    BindImages(id);
+                }
+            }
+
+        }
+        else
+        {
+            Session.Abandon();
+            Response.Redirect("Default.aspx");
+        }
+    }
+
+    private void BindImages(int id)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            ProjectsBLL objPro = new ProjectsBLL();
+            objPro.ID = id;
+            dt = objPro.GetRotaryPrtojects();
+            if (dt.Rows.Count > 0)
+            {
+                string thumbnail = dt.Rows[0]["project_images"].ToString();
+                if (thumbnail != "")
+                {
+                    Session["RotaryProjectImages"] = thumbnail;
+                    string[] strImages = thumbnail.Split(',');
+                    Array.Sort(strImages);
+                    DataTable dtt = new DataTable("MyDataTable");
+                    dtt.Columns.Add("project_images");
+                    foreach (string value in strImages)
+                    {
+                        dtt.Rows.Add(value);
+                    }
+
+                    Repeater1.DataSource = dtt;
+                    Repeater1.DataBind();
+                } 
+
+            }
+        }
+        catch { }
+
+    }
+    private void GetProjects(int id)
+    {
+        ProjectsBLL objPro = new ProjectsBLL();
+        objPro.ID = id;
+
+        DataTable dt = new DataTable();
+        dt = objPro.GetPrtojects();
+        if (dt.Rows.Count > 0)
+        {
+            // DDLYears.SelectedItem.Text = dt.Rows[0]["project_year"].ToString();
+            txtProName.Text = dt.Rows[0]["project_title"].ToString();
+            dtStartDate.DbSelectedDate = dt.Rows[0]["start_date"].ToString();
+            dtEndDate.DbSelectedDate = dt.Rows[0]["end_date"].ToString();
+
+            //DDLClubName2.SelectedValue = dt.Rows[0]["club_id"].ToString();
+            rbtnProjectType.SelectedItem.Text = dt.Rows[0]["project_type"].ToString();
+            txtProjectLocation.Text = dt.Rows[0]["project_location"].ToString();
+            txtDesc.Text = dt.Rows[0]["project_description"].ToString();
+            txtProjectCost.Text = dt.Rows[0]["project_cost"].ToString();
+            ddlAvenueCovered.SelectedItem.Text = dt.Rows[0]["avenue_of_covered"].ToString();
+            DDLChairperson.SelectedItem.Text = dt.Rows[0]["project_chairperson"].ToString();
+
+            string strComMembers = dt.Rows[0]["committee_members"].ToString();
+            if (strComMembers != "")
+            {
+                string[] mems = strComMembers.Split(',');
+                for (int i = 0; i <= mems.Length - 1; i++)
+                {
+                    listTopics.Items.Add(mems[i]);
+                }
+            }
+
+            txtBeneficiaries.Text = dt.Rows[0]["beneficiaries"].ToString();
+            // txtProName.Text = dt.Rows[0]["project_images"].ToString();
+            // txtProName.Text = dt.Rows[0]["partner_club_district_no"].ToString();
+            // txtProName.Text = dt.Rows[0]["partner_club_name"].ToString();
+
+
+            txtDistGrantNo.Text = dt.Rows[0]["district_grant_no"].ToString();
+            txtGlobalGrantNo.Text = dt.Rows[0]["district_global_no"].ToString();
+
+
+            string strImages = dt.Rows[0]["project_images"].ToString();
+            if (strImages != "")
+            {
+                Session["RotaryProjectImages"] = strImages;
+            }
+
+            //BindContacts(id);
+        }
+    }
+    private void BindYears()
+    {
+        try
+        {
+            int dt = DateTime.Now.Year;
+            int m = DateTime.Now.Month;
+            if (m > 6 && m <= 12)
+                dt = dt + 1;
+
+            string dtt = dt + " - " + (dt + 1);
+            lblRotaryYear.Text = dtt;
+
+            //for (Int32 i = Convert.ToInt32(dt - 1); i >= 2005; i--)
+            //{
+            //    string dtt = i + " - " + (i + 1);
+            //    DDLYears.Items.Add(dtt.ToString());
+            //}
+
+        }
+        catch (Exception E)
+        {
+            Response.Write(E.Message.ToString());
+        }
+    }
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        if (Page.IsValid)
+        {
+            AddProjects();
+        }
+    }
+    protected void UploadImages()
+    {
+        string strSession = "";
+        try
+        {
+
+            foreach (UploadedFile file in RadAsyncUpload1.UploadedFiles)
+            {
+                string strPath = "RotaryProjectImages";
+                string fileName = "";
+                string ext = "";
+
+                fileName = file.FileName;
+                string strDate = System.DateTime.Now.ToString();
+                strDate = strDate.Replace("/", "");
+                strDate = strDate.Replace("-", "");
+                strDate = strDate.Replace(":", "");
+                strDate = strDate.Replace(" ", "");
+                ext = fileName.Substring(fileName.LastIndexOf("."));
+                string path = Server.MapPath("~/" + strPath + "/" + strDate + fileName);
+                file.SaveAs(path);
+                strSession = strSession + strDate + fileName + ",";               
+            }
+
+            Session["RotaryProjectImages"] = Session["RotaryProjectImages"] + strSession.Remove(strSession.Length - 1);
+
+        }
+        catch { }
+    }
+    private void AddProjects()
+    {
+        if (RadAsyncUpload1.UploadedFiles.Count > 0)
+        {
+            Session["RotaryProjectImages"] = null;
+            UploadImages();
+        }
+
+        /************Code for find IP address of user's machine**********/
+        string ipaddress;
+        ipaddress = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+        if (ipaddress == "" || ipaddress == null)
+            ipaddress = Request.ServerVariables["REMOTE_ADDR"];
+        /***************************************************************/
+
+        ProjectsBLL objPro = new ProjectsBLL();
+
+        //objPro.Club_Id = 73;// int.Parse(DDLClubName2.SelectedValue.ToString());
+        objPro.ClubName = DDLClubName.SelectedItem.Text;
+        objPro.PresidentName = lblPresident.Text;
+        objPro.Project_Year = lblRotaryYear.Text.Trim();
+        objPro.Project_Title = txtProName.Text.ToString();
+        objPro.Start_Date = DateTime.Parse(dtStartDate.SelectedDate.ToString());
+        objPro.End_Date = DateTime.Parse(dtEndDate.SelectedDate.ToString());
+        objPro.Project_Type = rbtnProjectType.SelectedItem.Text.Trim();
+        objPro.Project_Location = txtProjectLocation.Text.ToString();
+        objPro.Project_Description = txtDesc.Text.ToString();
+        objPro.Project_Cost = decimal.Parse(txtProjectCost.Text.ToString());
+        objPro.Avenue_of_Covered = ddlAvenueCovered.SelectedItem.Text.ToString();
+        objPro.Project_Chairperson = DDLChairperson.SelectedItem.Text.ToString();
+
+        string strTopics = "";
+        foreach (ListItem li in listTopics.Items)
+        {
+            strTopics = strTopics + li.Text + ",";
+        }
+
+        objPro.Committee_Members = strTopics; // Multiple members comes here
+
+        objPro.Beneficiaries = txtBeneficiaries.Text.ToString();
+
+        try
+        {
+            string strImages = Session["RotaryProjectImages"].ToString();
+            //strImages = strImages.Remove(strImages.Length - 1);
+            objPro.Project_Images = strImages;
+        }
+        catch { objPro.Project_Images = ""; }
+
+        objPro.Partner_Club_District_no = "";
+
+        string strPartnerClub = "";
+        foreach (ListItem li in listPartnerClub.Items)
+        {
+            strPartnerClub = strPartnerClub + li.Text + ",";
+        }
+
+        objPro.Partner_Club_Name = strPartnerClub;
+
+        objPro.District_Grant_no = txtDistGrantNo.Text.ToString();
+        objPro.District_Global_no = txtGlobalGrantNo.Text.ToString();
+
+        objPro.Ipaddress = ipaddress;
+
+        int exe = objPro.AddRotaryPrtoject();
+        if (exe > 0)
+        {
+            try
+            {
+                string jv = "<script>alert('Project Has Been Added Successfully');</script>";
+                ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "alert", jv, false);
+            }
+            catch { }
+
+            Clear();
+        }
+    }
+    protected void btncancel_Click(object sender, EventArgs e)
+    {
+        Clear();
+    }
+    protected void rbtnProjectType_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        string type = rbtnProjectType.SelectedValue.ToString();        
+
+        if (type == "0")
+        {           
+            TRDistType_Joint.Visible = false;
+            TRPartnerClub_Joint.Visible = false;           
+            TRDistrictGrantNo.Visible = false;
+            TRGlobalGrantNo.Visible = false;
+        
+        }
+        if (type == "1")
+        {
+            TRDistType_Joint.Visible = true;
+            TRPartnerClub_Joint.Visible = true;         
+            TRDistrictGrantNo.Visible = false;
+            TRGlobalGrantNo.Visible = false;        
+
+        }
+        if (type == "2")
+        {
+            TRDistType_Joint.Visible = true;
+            TRPartnerClub_Joint.Visible = true;          
+            TRDistrictGrantNo.Visible = true;
+            TRGlobalGrantNo.Visible = false;        
+        }
+        if (type == "3")
+        {
+            TRDistType_Joint.Visible = true;
+            TRPartnerClub_Joint.Visible = true;        
+            TRDistrictGrantNo.Visible = false;
+            TRGlobalGrantNo.Visible = true;        
+        }
+    }
+    protected void btnAddmore_Click(object sender, EventArgs e)
+    {
+        if (Page.IsValid)
+        {
+            ListItem li = new ListItem();
+            TRTopics.Visible = true;
+            li.Text = DDLMembers.SelectedItem.Text.ToString();
+            li.Value = DDLMembers.SelectedValue.ToString();
+            listTopics.Items.Add(li);
+            DDLMembers.SelectedIndex = 0;
+        }
+    }
+    protected void btnRemove_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if (listTopics.Items.Count > 0)
+            {
+                ListItem li = new ListItem();
+                li.Text = listTopics.SelectedItem.Text.ToString();
+                li.Value = listTopics.SelectedValue.ToString();
+
+                listTopics.Items.Remove(li);
+            }
+            else
+            {
+                TRTopics.Visible = false;
+            }
+        }
+        catch
+        {
+        }
+    }
+    private void BindMembers(int clubId)
+    {
+        DBconnection obj = new DBconnection();
+        //obj.SetCommandQry = "select * from ViewMembers where MemberId=" + Session["MemberId"].ToString() + " and Status='True' order by Name asc";
+        obj.SetCommandQry = "select * from ViewMembers where DistrictClubID= " + clubId + " and MemType='Active' order by Name asc";
+
+        DataTable dt = new DataTable();
+        dt = obj.ExecuteTable();
+
+        DDLMembers.DataTextField = "Name";
+        DDLMembers.DataValueField = "MemberId";
+
+        DDLMembers.DataSource = dt;
+        DDLMembers.DataBind();
+        //DDLMember.Items.Insert(0, "Select");
+
+
+        DDLChairperson.DataTextField = "Name";
+        DDLChairperson.DataValueField = "MemberId";
+
+        DDLChairperson.DataSource = dt;
+        DDLChairperson.DataBind();
+
+    }
+    private void BindMembersSpouses(int clubId)
+    {
+        DBconnection obj = new DBconnection();
+        obj.SetCommandQry = "select * from View_MemberSpouse where DistrictClubID= " + clubId + " order by Name asc";
+
+        DataTable dt = new DataTable();
+        dt = obj.ExecuteTable();
+
+        DDLChairperson.DataTextField = "Name";
+        DDLChairperson.DataValueField = "memberId";
+
+        DDLChairperson.DataSource = dt;
+        DDLChairperson.DataBind();
+        //DDLMember.Items.Insert(0, "Select");
+    }
+    private void Clear()
+    {
+        txtBeneficiaries.Text = "";
+        txtDesc.Text = "";
+        txtDistClubName.Text = "";
+        txtDistGrantNo.Text = "";
+        txtDistrictNo.Text = "";
+
+        txtGlobalGrantNo.Text = "";
+
+        txtProjectCost.Text = "";
+
+        txtProName.Text = "";
+
+        txtProjectLocation.Text = "";
+
+        ddlAvenueCovered.SelectedIndex = 0;
+        DDLClubName.SelectedIndex = 0;
+        //DDLClubName2.SelectedIndex = 0;
+        //ddlCtitle.SelectedIndex = 0;
+        DDLMembers.SelectedIndex = 0;
+        DDLChairperson.SelectedIndex = 0;
+        //DDLYears.SelectedIndex = 0;
+        rbtnDistNo.SelectedIndex = 0;
+        rbtnProjectType.SelectedIndex = 0;
+        listPartnerClub.Items.Clear();
+        listTopics.Items.Clear();
+
+        TRPartnerClub_JointList.Visible = false;
+        txtDistClubName.Visible = false;
+        txtDistrictNo.Visible = false;
+        TRPartnerClub_JointList.Visible = false;
+        TRDistType_Joint.Visible = false;
+        TRPartnerClub_Joint.Visible = false;
+        TRDistrictGrantNo.Visible = false;
+        TRGlobalGrantNo.Visible = false;
+
+        dtStartDate.Clear();
+        dtEndDate.Clear();
+        Session["RotaryProjectImages"] = null;
+    }
+    protected void rbtnDistNo_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        int value=int.Parse(rbtnDistNo.SelectedValue.ToString());
+        txtDistrictNo.Text = "";
+        txtDistClubName.Text = "";
+        if (value == 0)
+        {
+            DDLClubName.Visible = true;
+            txtDistClubName.Visible = false;
+            txtDistrictNo.Visible = false;
+        }
+
+        if (value == 1)
+        {
+            DDLClubName.Visible = false;
+            txtDistClubName.Visible = true;
+            txtDistrictNo.Visible = true;
+        }
+    }
+    protected void btnPartnerClub_Click(object sender, EventArgs e)
+    {
+        TRPartnerClub_JointList.Visible = true;
+        int value=int.Parse(rbtnDistNo.SelectedValue.ToString());
+
+        if (Page.IsValid)
+        {
+            ListItem li = new ListItem();
+            listPartnerClub.Visible = true;
+            if (value == 0)
+                li.Text = "3140 - " + DDLClubName.SelectedItem.Text.ToString();
+            else
+                li.Text = txtDistrictNo.Text + " - " + txtDistClubName.Text.ToString();
+
+            listPartnerClub.Items.Add(li);
+
+            txtDistrictNo.Text = "";
+            txtDistClubName.Text = "";
+        }
+    }
+    protected void btnPartnerClubRemove_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if (listPartnerClub.Items.Count > 0)
+            {
+                ListItem li = new ListItem();
+                li.Text = listPartnerClub.SelectedItem.Text.ToString();
+
+                listPartnerClub.Items.Remove(li);
+            }
+            else
+            {
+                listPartnerClub.Visible = false;
+            }
+        }
+        catch
+        {
+        }
+    }
+    public void ShowMsg(string msg, string redirectUrl)
+    {
+        try
+        {
+            string strScript = "<script>";
+            strScript += "alert('" + msg + "');";
+            strScript += "window.location='" + redirectUrl + "';";
+            strScript += "</script>";
+            Label lbl = new Label();
+            lbl.Text = strScript;
+            Page.Controls.Add(lbl);
+        }
+        catch { }
+    }      
+    protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        Label lblImgPath = (Label)e.Item.FindControl("lblImgPath");
+        if (lblImgPath != null)
+        {
+            string strImgPath = lblImgPath.Text;
+            Image img1 = (Image)e.Item.FindControl("img1");
+            img1.Visible = true;
+            img1.ImageUrl = "../RotaryProjectImages/" + strImgPath.ToString();
+        }
+    }
+    protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        string strImages = "";
+        if (e.CommandName == "Delete")
+        {
+            int pid = Int32.Parse(Request.QueryString["id"].ToString());
+            string[] aImages = Session["RotaryProjectImages"].ToString().Split(',');
+            strImages = e.CommandArgument.ToString();
+            for (int i = 0; i <= aImages.Length - 1; i++)
+            {
+                if (strImages == aImages[i])
+                {
+                    if (i == 0)
+                    {
+                        strImages = strImages + ",";
+                    }
+                    else if (i == aImages.Length - 1)
+                    {
+                        strImages = "," + strImages;
+                    }
+                    else
+                    {
+                        strImages = strImages + ",";
+                    }
+                }
+            }
+
+            DBconnection obj = new DBconnection();
+            obj.SetCommandSP = "z_UpdateProductImages";
+            obj.AddParam("@images", strImages);
+            obj.AddParam("@pid", pid);
+
+            int exe = obj.ExecuteNonQuery();
+
+            if (exe > 0)
+            {
+                BindImages(pid);
+            }
+        }
+    }
+    protected void DDLClub_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        int clubId = int.Parse(DDLClub.SelectedValue.ToString());
+
+        BindMembers(clubId);
+        BindMembersSpouses(clubId);
+    }
+}
